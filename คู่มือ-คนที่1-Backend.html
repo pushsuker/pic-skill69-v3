@@ -1,0 +1,3017 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>คู่มือทีม 3 คน (ฉบับย่อ)</title>
+<style>
+:root{
+  --bg:#f4f6f9; --paper:#fff; --ink:#1f2a37; --muted:#5b6b7c; --line:#dde3ea;
+  --brand:#164d72; --brand-soft:#e7f0f7;
+  --p1:#2563eb; --p1-soft:#eaf1ff; --p2:#15803d; --p2-soft:#e8f6ec; --p3:#7c3aed; --p3-soft:#f1eafe;
+  --check:#b45309; --check-soft:#fff6e5; --code-bg:#0f1b2a; --code-ink:#e6edf3;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 "Leelawadee UI","Sarabun","Noto Sans Thai",Tahoma,sans-serif}
+a{color:var(--brand)}
+.layout{display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh}
+aside{background:var(--paper);border-right:1px solid var(--line);position:sticky;top:0;height:100vh;overflow:auto;padding:18px 14px}
+aside h2{font-size:17px;margin:0 6px 4px;color:var(--brand)}
+aside .sub{font-size:13px;color:var(--muted);margin:0 6px 14px}
+aside nav a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;text-decoration:none;color:var(--ink);font-size:14.5px;line-height:1.4}
+aside nav a:hover{background:var(--bg)}
+aside nav a.active{background:var(--brand-soft);font-weight:600}
+.badge{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:#fff;font-size:13px;font-weight:700}
+.nt{flex:1}
+.done{flex:none;color:var(--p2);font-weight:700;visibility:hidden}
+a.is-done .done{visibility:visible}
+a.is-done .badge{background:var(--p2)}
+.progress{margin:16px 6px 0;font-size:13px;color:var(--muted)}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--p2);width:0;transition:width .3s}
+main{padding:0 28px 60px;min-width:0}
+.toolbar{position:sticky;top:0;z-index:5;background:var(--bg);padding:14px 0 10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-bottom:1px solid var(--line);margin-bottom:8px}
+.toolbar .lbl{font-size:14px;color:var(--muted);margin-right:4px}
+.who{text-decoration:none;display:inline-block;border:2px solid var(--line);background:var(--paper);border-radius:999px;padding:5px 14px;font:inherit;font-size:14px;cursor:pointer;color:var(--ink)}
+.who.on{border-color:var(--brand);background:var(--brand);color:#fff}
+.who.w1.on{background:var(--p1);border-color:var(--p1)}
+.who.w2.on{background:var(--p2);border-color:var(--p2)}
+.who.w3.on{background:var(--p3);border-color:var(--p3)}
+.menu-btn{display:none}
+html:not(.js) .menu-btn{display:none!important}
+.page{display:block;max-width:980px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:26px 32px;margin-top:14px}
+html.js .page{display:none}
+html.js .page.show{display:block}
+h1{font-size:28px;line-height:1.35;margin:0 0 14px;color:var(--brand)}
+h2{font-size:22px;margin:30px 0 10px;line-height:1.4}
+h3{font-size:18px;margin:22px 0 8px}
+p,li{overflow-wrap:anywhere}
+blockquote{margin:14px 0;padding:10px 16px;background:var(--brand-soft);border-left:4px solid var(--brand);border-radius:6px}
+blockquote p{margin:4px 0}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:15px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#eef3f8;white-space:nowrap}
+code{font-family:Consolas,"Cascadia Code",monospace;font-size:.9em;background:#eef2f6;padding:1px 5px;border-radius:4px}
+.codebox{position:relative;margin:10px 0 18px}
+pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:16px 18px;border-radius:10px;overflow:auto;font-size:13.5px;line-height:1.55;max-height:560px}
+pre code{background:none;padding:0;color:inherit;font-size:inherit}
+.copy{position:absolute;top:8px;right:8px;border:0;border-radius:6px;padding:5px 12px;font:inherit;font-size:13px;cursor:pointer;background:#fff;color:var(--ink);opacity:.92}
+.copy.ok{background:var(--p2);color:#fff}
+.fold{margin-top:6px;font-size:13px;color:var(--muted);background:none;border:0;cursor:pointer;padding:0;text-decoration:underline}
+pre.tall{max-height:none}
+section.part{border-left:5px solid transparent;padding-left:16px;margin-left:-21px}
+section.who-1{border-color:var(--p1)}
+section.who-2{border-color:var(--p2)}
+section.who-3{border-color:var(--p3)}
+section.who-1>h2{color:var(--p1)}
+section.who-2>h2{color:var(--p2)}
+section.who-3>h2{color:var(--p3)}
+section.check{background:var(--check-soft);border-color:var(--check);border-radius:0 10px 10px 0;padding:4px 16px 10px}
+section.check>h2{color:var(--check)}
+.wr{position:absolute;opacity:0;pointer-events:none}
+#w-all:checked~.layout label[for=w-all]{border-color:var(--brand);background:var(--brand);color:#fff}
+#w-1:checked~.layout label[for=w-1]{border-color:var(--p1);background:var(--p1);color:#fff}
+#w-2:checked~.layout label[for=w-2]{border-color:var(--p2);background:var(--p2);color:#fff}
+#w-3:checked~.layout label[for=w-3]{border-color:var(--p3);background:var(--p3);color:#fff}
+#w-1:checked~.layout section.who-2,#w-1:checked~.layout section.who-3,
+#w-2:checked~.layout section.who-1,#w-2:checked~.layout section.who-3,
+#w-3:checked~.layout section.who-1,#w-3:checked~.layout section.who-2{display:none}
+.copy{display:none}
+html.js .copy{display:block}
+
+.page>h1+p{background:var(--brand-soft);border-radius:10px;padding:12px 16px;line-height:1.9}
+.zone{background:var(--check-soft);border-radius:10px;padding:2px 14px 8px;margin:14px 0}
+.zone>h3{color:var(--check)}
+.tag{display:inline-block;font-size:12px;font-weight:700;color:#fff;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:middle}
+.tag.t1{background:var(--p1)}.tag.t2{background:var(--p2)}.tag.t3{background:var(--p3)}
+td.cb,th.cb{width:44px;text-align:center}
+input[type=checkbox]{width:20px;height:20px;accent-color:var(--p2);cursor:pointer}
+li.cbli{list-style:none;margin-left:-22px}
+li.cbli input{vertical-align:middle;margin-right:8px}
+.finish{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:18px}
+.btn{border:0;border-radius:8px;padding:10px 18px;font:inherit;font-size:15px;cursor:pointer;background:var(--brand-soft);color:var(--brand);text-decoration:none}
+.btn.primary{background:var(--p2);color:#fff}
+.btn.primary.is-done{background:var(--line);color:var(--muted)}
+.hint{font-size:13px;color:var(--muted);margin:8px 0 0}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr}
+  aside{position:fixed;inset:0 auto 0 0;width:86%;max-width:330px;z-index:20;transform:translateX(-105%);transition:transform .25s;box-shadow:0 0 30px rgba(0,0,0,.25)}
+  aside.open{transform:none}
+  .menu-btn{display:inline-block}
+  main{padding:0 12px 40px}
+  .page{padding:18px 16px}
+  section.part{margin-left:-11px;padding-left:9px}
+  h1{font-size:23px}
+  html:not(.js) aside{position:static;transform:none;width:auto;max-width:none;height:auto;box-shadow:none;border-right:0;border-bottom:1px solid var(--line)}
+}
+@media print{
+  aside,.toolbar,.copy,.finish,.fold{display:none!important}
+  .layout{display:block}
+  .page{display:block!important;border:0;page-break-after:always}
+  pre{max-height:none;white-space:pre-wrap}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside id="side">
+    <h2>คู่มือทีม 3 คน (ฉบับย่อ)</h2>
+    <p class="sub">ฉบับของคนที่ 1 Backend</p>
+    <nav><a href="#p0" data-page="p0"><span class="badge">★</span><span class="nt">เริ่มที่นี่: ภาพรวมและแบ่งหน้าที่</span><span class="done">✓</span></a>
+<a href="#p1" data-page="p1"><span class="badge">G</span><span class="nt">ส่งไฟล์กันในทีมด้วย Git (ออฟไลน์)</span><span class="done">✓</span></a>
+<a href="#p2" data-page="p2"><span class="badge">0</span><span class="nt">ขั้น 0: เตรียมเครื่อง สร้างโปรเจกต์ และเปิดฐานข้อมูลด้วย Docker</span><span class="done">✓</span></a>
+<a href="#p3" data-page="p3"><span class="badge">1</span><span class="nt">ขั้น 1: ตารางฐานข้อมูล และโครง Backend</span><span class="done">✓</span></a>
+<a href="#p4" data-page="p4"><span class="badge">2</span><span class="nt">ขั้น 2: Login ด้วย JWT และโครงหน้าเว็บ</span><span class="done">✓</span></a>
+<a href="#p5" data-page="p5"><span class="badge">3</span><span class="nt">ขั้น 3: ฝ่ายบุคลากร: ผู้ใช้ รอบประเมิน หัวข้อ ตัวชี้วัด และมอบหมายกรรมการ</span><span class="done">✓</span></a>
+<a href="#p6" data-page="p6"><span class="badge">4</span><span class="nt">ขั้น 4: ผู้รับประเมินตนเอง และอัปโหลดหลักฐาน</span><span class="done">✓</span></a>
+<a href="#p7" data-page="p7"><span class="badge">5</span><span class="nt">ขั้น 5: กรรมการให้คะแนน ความเห็น ลายเซ็น และส่งผล</span><span class="done">✓</span></a>
+<a href="#p8" data-page="p8"><span class="badge">6</span><span class="nt">ขั้น 6: รายงาน ติดตามสถานะ เผยแพร่ผล และ Export PDF</span><span class="done">✓</span></a>
+<a href="#p9" data-page="p9"><span class="badge">7</span><span class="nt">ขั้น 7: การทดสอบโปรแกรม (Finish detail design process)</span><span class="done">✓</span></a>
+<a href="#p10" data-page="p10"><span class="badge">8</span><span class="nt">ขั้น 8: โจทย์พิเศษ (20 คะแนน) และการนำเสนอ (10 คะแนน)</span><span class="done">✓</span></a>
+<a href="#p11" data-page="p11"><span class="badge">?</span><span class="nt">แก้ปัญหาที่พบบ่อย</span><span class="done">✓</span></a></nav>
+    <div class="progress">ความคืบหน้าของทีม <span id="pct">0</span>%<div class="bar"><i id="barfill"></i></div></div>
+  </aside>
+  <main>
+    <div class="toolbar">
+      <button class="who menu-btn" id="menu">☰ เมนู</button>
+      <span class="lbl">ดูงานของ:</span>
+      <a class="who" href="คู่มือทีม3คน.html">ทุกคน</a>
+<a class="who w1 on" href="คู่มือ-คนที่1-Backend.html">คนที่ 1 Backend</a>
+<a class="who w2" href="คู่มือ-คนที่2-Frontend.html">คนที่ 2 Frontend</a>
+<a class="who w3" href="คู่มือ-คนที่3-ออกแบบ.html">คนที่ 3 ออกแบบ</a>
+    </div>
+    <article class="page" id="p0"><h1>คู่มือทีม 3 คน (ฉบับย่อ): ระบบประเมินบุคลากร (รายการที่ 57) รันด้วย Docker</h1><blockquote>
+<p><strong>ฉบับย่อ</strong> ทำงานครบตามเกณฑ์เหมือนฉบับเต็ม และยังบังคับเปลี่ยนรหัสผ่านครั้งแรก แต่ตัดส่วนที่ยากและไม่มีคะแนนออก: ระบบ token_version, การเตือน "ยังไม่บันทึก" (dirty tracking), ไลบรารี html2pdf (ใช้ปุ่มพิมพ์ → บันทึกเป็น PDF แทน) และแยกหน้ารอบประเมินที่ยาวที่สุดออกเป็น 3 ไฟล์เล็ก</p>
+</blockquote>
+<p>คู่มือนี้พาทำระบบตามโค้ด <code>vue-pic-student</code> ตั้งแต่โฟลเดอร์ว่างจนจบ แบ่งงานให้ 3 คน และเรียงลำดับตาม <strong>เกณฑ์ให้คะแนน 100 คะแนน</strong> ทุกขั้นจบด้วย <strong>จุดเช็ก</strong> ถ้าผ่านให้ <strong>บันทึก (git commit)</strong> ทันที ถ้าขั้นถัดไปพัง ก็ย้อนกลับมาจุดที่ผ่านได้ และระบบยังเปิดโชว์กรรมการได้ คะแนนส่วนก่อนหน้าไม่หาย</p>
+<blockquote>
+<p>โค้ดทุกไฟล์ในคู่มือนี้ทดสอบรันจริงด้วย <code>docker compose</code> ครบทุกขั้นแล้ว (ขั้น 1 ถึง 8) เฉลยที่ทำครบอยู่ในโฟลเดอร์ <code>เฉลย-docker/</code> ข้างคู่มือนี้ ครูใช้ตรวจ ไม่ควรให้นักเรียนคัดลอกทั้งโฟลเดอร์ตอนฝึก</p>
+</blockquote>
+<section class="part"><h2>1. หน้าที่ของแต่ละคน</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>คนที่ 1 — Backend</th>
+<th>คนที่ 2 — Frontend</th>
+<th>คนที่ 3 — ออกแบบ / ทดสอบ / นำเสนอ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ทำอะไร</td>
+<td>Docker, ฐานข้อมูล MySQL, API ด้วย Express + JWT</td>
+<td>หน้าเว็บ Vue 3 + Vuetify ทุกหน้า</td>
+<td>Draw.io (ผังงาน, ER, หน้าจอ), เอกสาร API, ทดสอบ, สไลด์นำเสนอ</td>
+</tr>
+<tr>
+<td>ไฟล์ที่รับผิดชอบ</td>
+<td><code>docker-compose.yml</code>, <code>backend/**</code></td>
+<td><code>frontend/**</code></td>
+<td><code>docs/**</code>, <code>backend/tests/**</code> (ร่วมกับคนที่ 1)</td>
+</tr>
+<tr>
+<td>คะแนนที่ดูแลหลัก</td>
+<td>ส่วน 2 (DB 5), ส่วน 6 (API 10)</td>
+<td>ส่วน 5 (โปรแกรม 30)</td>
+<td>ส่วน 1, 3, 4 (15), ส่วน 7 (10), ส่วน 9 (10)</td>
+</tr>
+<tr>
+<td>ทักษะที่ต้องฝึก</td>
+<td>SQL, async/await, Thunder Client</td>
+<td>Vue Options API (<code>data</code>, <code>methods</code>), Vuetify</td>
+<td>Draw.io, อธิบายระบบ, DevTools</td>
+</tr>
+</tbody>
+</table>
+<p><strong>กติกาทีม:</strong> ทุกคน commit/pull/push งานของตัวเองทุกครั้งที่ผ่านจุดเช็ก เครื่องของคนที่ 1 เป็นเครื่องหลักที่ใช้โชว์กรรมการ</p>
+</section><section class="part"><h2>2. ต้องใช้กี่เครื่อง และส่งไฟล์กันยังไง</h2>
+<p>วันแข่งทีมมีเครื่องของตัวเอง 1 เครื่อง + เครื่องที่กรรมการเตรียม 2 เครื่อง ห้องแข่งออกอินเทอร์เน็ตไม่ได้ แต่ผู้จัดมี <strong>Git server ในวง LAN</strong> ให้</p>
+<ul>
+<li>ทุกคนทำงานบนเครื่องตัวเอง และรัน <code>docker compose</code> บนเครื่องตัวเองได้</li>
+<li>ส่งโค้ดให้กันผ่าน Git server ของผู้จัด: <strong>commit → pull → push</strong> ทุกครั้งที่ผ่านจุดเช็ก</li>
+<li>แต่ละคนแก้เฉพาะโฟลเดอร์ของตัวเอง (<code>backend/</code>, <code>frontend/</code>, <code>docs/</code>) จึงไม่ชนกัน</li>
+<li>เครื่องที่ใช้โชว์กรรมการคือเครื่องของคนที่ 1 (pull งานครบก่อนหมดเวลา)</li>
+</ul>
+<p>วิธีทำทีละคำสั่ง อยู่ใน <a href="#p1">01-ส่งไฟล์กันด้วยGit.md</a> <strong>ต้องซ้อมให้คล่องก่อนวันแข่ง</strong> และครูต้องถามผู้จัดล่วงหน้าเรื่อง Docker image และไลบรารี npm ที่มีให้ใช้แบบออฟไลน์ (ข้อ 6 ในหน้านั้น)</p>
+</section><section class="part"><h2>3. แผนเวลา 6 ชั่วโมง (09:00–15:00)</h2>
+<table>
+<thead>
+<tr>
+<th>เวลา</th>
+<th>ขั้น</th>
+<th>คนที่ 1 Backend</th>
+<th>คนที่ 2 Frontend</th>
+<th>คนที่ 3 ออกแบบ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>09:00–09:20</td>
+<td>0</td>
+<td>สร้างโครงโปรเจกต์, push ขึ้น Git, Docker (DB)</td>
+<td><code>git clone</code> โปรเจกต์ลงเครื่อง</td>
+<td>เปิด Draw.io เริ่มผังงาน</td>
+</tr>
+<tr>
+<td>09:20–10:00</td>
+<td>1</td>
+<td>ตาราง + โครง backend</td>
+<td>เตรียมไฟล์ frontend (พิมพ์ล่วงหน้า)</td>
+<td>ผังงาน 5 แผ่น (ส่วน 1)</td>
+</tr>
+<tr>
+<td>10:00–10:45</td>
+<td>2</td>
+<td>Login + JWT + ผู้ใช้</td>
+<td>โครงเว็บ + หน้า Login / รหัสผ่าน / ข้อมูลส่วนตัว</td>
+<td>ER-Diagram + ทดสอบ Login ด้วย Thunder Client</td>
+</tr>
+<tr>
+<td>10:45–11:45</td>
+<td>3</td>
+<td>API รอบ/หัวข้อ/ตัวชี้วัด/กรรมการ</td>
+<td>หน้าผู้ใช้ + หน้ารอบประเมิน</td>
+<td>Layout หน้าจอ 5 แผ่น (ส่วน 3)</td>
+</tr>
+<tr>
+<td>11:45–12:15</td>
+<td>—</td>
+<td>พักกินข้าว</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>12:15–13:00</td>
+<td>4</td>
+<td>API ประเมินตนเอง + อัปโหลด</td>
+<td>หน้าประเมินตนเอง</td>
+<td>เอกสาร API (ส่วน 4)</td>
+</tr>
+<tr>
+<td>13:00–13:40</td>
+<td>5</td>
+<td>API กรรมการ</td>
+<td>หน้ากรรมการ</td>
+<td>ทดสอบตามขั้น 2–4</td>
+</tr>
+<tr>
+<td>13:40–14:10</td>
+<td>6</td>
+<td>API รายงาน</td>
+<td>หน้ารายงาน + PDF</td>
+<td>ทดสอบขั้น 5</td>
+</tr>
+<tr>
+<td>14:10–14:40</td>
+<td>7</td>
+<td>รันชุดทดสอบ</td>
+<td>ตรวจ DevTools + มือถือ</td>
+<td>จดผลทดสอบ + ภาพหน้าจอ</td>
+</tr>
+<tr>
+<td>14:40–15:00</td>
+<td>8</td>
+<td>โจทย์พิเศษ + สำรองข้อมูล</td>
+<td>โจทย์พิเศษ</td>
+<td>เตรียมสไลด์</td>
+</tr>
+</tbody>
+</table>
+<p>ถ้าขั้นไหนเกินเวลา 15 นาที ให้ <strong>หยุด ย้อนไปจุดที่ผ่านล่าสุด แล้วไปขั้นต่อไป</strong> ห้ามจมอยู่ขั้นเดียว</p>
+</section><section class="part"><h2>4. ทำไมต้องเรียงแบบนี้ (คะแนนที่ได้เมื่อผ่านแต่ละขั้น)</h2>
+<table>
+<thead>
+<tr>
+<th>ผ่านขั้น</th>
+<th>ข้อเกณฑ์ที่ได้คะแนน</th>
+<th>คะแนน</th>
+<th>สะสม</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>คนที่ 3 ทำคู่ขนานตั้งแต่ 09:00</td>
+<td>ส่วน 1 ผังงาน (5) + ส่วน 3 หน้าจอ (5) + ส่วน 4 ออกแบบ API (5) + 2.4 ER (1) + 6.7, 6.8 เอกสาร API (2)</td>
+<td>18</td>
+<td>18</td>
+</tr>
+<tr>
+<td>ขั้น 1 ฐานข้อมูล</td>
+<td>2.1, 2.2, 2.3, 2.5</td>
+<td>4</td>
+<td>22</td>
+</tr>
+<tr>
+<td>ขั้น 2 Login / JWT</td>
+<td>6.2, 6.4, 6.5, 6.6, 6.9, 6.10, 5.2.1, 5.2.2</td>
+<td>8</td>
+<td>30</td>
+</tr>
+<tr>
+<td>ขั้น 3 ฝ่ายบุคลากร</td>
+<td>5.1.1–5.1.4 (5), 5.1.6–5.1.9 (4), 6.1</td>
+<td>10</td>
+<td>40</td>
+</tr>
+<tr>
+<td>ขั้น 4 ผู้รับประเมินตนเอง</td>
+<td>5.1.5, 5.2.3–5.2.6, 6.3</td>
+<td>6</td>
+<td>46</td>
+</tr>
+<tr>
+<td>ขั้น 5 กรรมการ</td>
+<td>5.3.1–5.3.8</td>
+<td>8</td>
+<td>54</td>
+</tr>
+<tr>
+<td>ขั้น 6 รายงาน / PDF</td>
+<td>5.1.10–5.1.13, 5.2.7, 5.2.8</td>
+<td>6</td>
+<td>60</td>
+</tr>
+<tr>
+<td>ขั้น 7 ทดสอบ</td>
+<td>7.1–7.8</td>
+<td>10</td>
+<td>70</td>
+</tr>
+<tr>
+<td>ขั้น 8 โจทย์พิเศษ</td>
+<td>8.1–8.6 (ขึ้นกับโจทย์วันแข่ง)</td>
+<td>สูงสุด 20</td>
+<td>90</td>
+</tr>
+<tr>
+<td>วันที่ 3 นำเสนอ</td>
+<td>ส่วน 9</td>
+<td>10</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<p>เหตุผล: ส่วนออกแบบ 18 คะแนนไม่ต้องรอโค้ด คนที่ 3 จึงเริ่มทันที ส่วนโค้ดเริ่มจากฐานข้อมูลและ Login เพราะทุกหน้าต้องใช้ แล้วไล่ตามลำดับการใช้งานจริง (ตั้งรอบ → ผู้รับกรอก → กรรมการให้คะแนน → รายงาน) เพื่อให้ทุกขั้นเปิดโชว์กรรมการได้จริง</p>
+</section><section class="part check"><h2>5. กฎ "เก็บคะแนน" — ทำทุกครั้งที่ผ่านจุดเช็ก</h2>
+<div class="codebox"><pre><code class="language-powershell">git add -A
+git commit -m "ขั้น 2 ผ่าน: login ได้"
+git pull
+git push
+</code></pre></div>
+<p>ทุกจุด "💾 บันทึก" ในคู่มือ ให้ต่อท้ายด้วย <code>git pull</code> และ <code>git push</code> เสมอ เพื่อส่งงานให้เพื่อนในทีม</p>
+<p>ถ้าขั้นถัดไปพังและแก้ไม่ทัน ให้กลับไปสภาพที่ผ่านล่าสุด:</p>
+<div class="codebox"><pre><code class="language-powershell">git status            # ดูว่าไฟล์ไหนถูกแก้
+git restore .         # ทิ้งการแก้ไขที่ยังไม่ commit ทั้งหมด
+</code></pre></div>
+<p>ไฟล์ใหม่ที่ยังไม่เคย commit จะยังอยู่ ถ้าต้องการลบให้ลบเองทีละไฟล์ (หรือ <code>git clean -n</code> ดูก่อน แล้ว <code>git clean -f</code>)</p>
+<p><strong>กลไกที่ทำให้ระบบไม่ล่มแม้ขั้นหลังยังไม่เสร็จ</strong></p>
+<ul>
+<li class="cbli"><input data-key="p0:c0" type="checkbox"/>ใน <code>backend/server.js</code> บรรทัดของขั้นที่ยังไม่ถึงจะมี <code>//</code> นำหน้า (ปิดไว้) ถึงขั้นไหนค่อยลบ <code>//</code> ของขั้นนั้น</li>
+<li class="cbli"><input data-key="p0:c1" type="checkbox"/>ใน <code>frontend/src/App.vue</code> หน้าที่ยังไม่ทำจะชี้ไปที่ <code>NotReady.vue</code> ซึ่งแสดงว่า "ส่วนนี้อยู่ในบทถัดไป" ถึงขั้นไหนค่อยเปลี่ยนเป็นไฟล์จริง</li>
+</ul>
+</section><section class="part"><h2>6. ลำดับไฟล์คู่มือ</h2>
+<ol>
+<li><a href="#p1">01-ส่งไฟล์กันด้วยGit.md</a> — ส่งไฟล์กันในทีมผ่าน Git ของผู้จัด</li>
+<li><a href="#p2">ขั้น0-เตรียมเครื่องและDocker.md</a></li>
+<li><a href="#p3">ขั้น1-ฐานข้อมูลและโครงBackend.md</a></li>
+<li><a href="#p4">ขั้น2-Login-JWT-และโครงหน้าเว็บ.md</a></li>
+<li><a href="#p5">ขั้น3-ฝ่ายบุคลากร-รอบและเกณฑ์.md</a></li>
+<li><a href="#p6">ขั้น4-ผู้รับประเมินตนเองและอัปโหลด.md</a></li>
+<li><a href="#p7">ขั้น5-กรรมการให้คะแนน.md</a></li>
+<li><a href="#p8">ขั้น6-รายงานและPDF.md</a></li>
+<li><a href="#p9">ขั้น7-ทดสอบระบบ.md</a></li>
+<li><a href="#p10">ขั้น8-โจทย์พิเศษและนำเสนอ.md</a></li>
+<li><a href="คนที่3-งานออกแบบDrawio.md">คนที่3-งานออกแบบDrawio.md</a> — งานคู่ขนานของคนที่ 3 ตลอดวัน</li>
+<li><a href="#p11">แก้ปัญหาที่พบบ่อย.md</a></li>
+</ol>
+</section><section class="part"><h2>7. บัญชีสำหรับทดสอบ</h2>
+<table>
+<thead>
+<tr>
+<th>บทบาท</th>
+<th>ชื่อผู้ใช้</th>
+<th>รหัสเริ่มต้น</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ฝ่ายบุคลากร</td>
+<td>admin</td>
+<td>Admin1234!</td>
+</tr>
+<tr>
+<td>ผู้รับการประเมิน</td>
+<td>emp001, emp002</td>
+<td>Emp1234!</td>
+</tr>
+<tr>
+<td>กรรมการ</td>
+<td>eval01, eval02</td>
+<td>Eval1234!</td>
+</tr>
+</tbody>
+</table>
+<p>เข้าครั้งแรกทุกบัญชีต้องเปลี่ยนรหัสผ่านก่อน (ความปลอดภัย) <strong>ตอนฝึกให้ตั้งรหัสใหม่แบบเดียวกันทั้งทีม</strong> เช่นเติม <code>x</code> ท้ายรหัสเดิม (<code>Admin1234!x</code>) จะได้ไม่ลืม</p>
+</section><section class="part"><h2>8. ฝึกยังไงให้ทันวันแข่ง</h2>
+<p>ห้องแข่งห้ามนำเอกสารเข้า คู่มือนี้จึงใช้ <strong>ฝึกก่อนแข่ง</strong> แนะนำรอบฝึกดังนี้</p>
+<ol>
+<li>รอบที่ 1 ทำตามคู่มือช้า ๆ อ่านคำอธิบาย "เข้าใจโค้ด" ทุกขั้น</li>
+<li>รอบที่ 2 ทำตามคู่มือแต่จับเวลาตามตารางข้อ 3</li>
+<li>รอบที่ 3 ขึ้นไป ปิดคู่มือ พิมพ์จากความจำ เปิดดูเฉพาะเมื่อติด แล้วจดจุดที่ติดไว้ฝึกซ้ำ</li>
+<li>ฝึกพูดนำเสนอ 20 นาที และตอบคำถาม 3 ข้อ (คนที่ 3 นำ คนที่ 1 และ 2 ตอบส่วนของตัวเอง)</li>
+</ol></section><div class="pager"></div></article>
+<article class="page" id="p1"><h1>ส่งไฟล์กันในทีมด้วย Git ของผู้จัด (ไม่ต้องใช้อินเทอร์เน็ต)</h1><p>วันแข่ง ผู้จัดเตรียม <strong>Git server ในวง LAN</strong> ไว้ให้ (เช่น Gitea / GitLab) ทุกเครื่องในห้องต่อถึงกันได้ แม้จะออกอินเทอร์เน็ตไม่ได้ ทีมใช้ server นี้เป็น "กล่องกลาง" ส่งโค้ดให้กัน ทุกคนทำงานบนเครื่องตัวเอง แล้วส่งขึ้น (push) และดึงลง (pull) ผ่าน server</p>
+<div class="codebox"><pre><code class="language-text">  เครื่องคนที่ 1 ──push/pull──┐
+  เครื่องคนที่ 2 ──push/pull──┼──  Git server ของผู้จัด (repo ของทีม)
+  เครื่องคนที่ 3 ──push/pull──┘
+</code></pre></div>
+<section class="part"><h2>1. กติกาสำคัญ: แต่ละคนแก้เฉพาะโฟลเดอร์ของตัวเอง</h2>
+<p>ถ้าไม่มีใครแก้ไฟล์เดียวกัน git จะรวมงานให้เองทุกครั้ง <strong>ไม่มี conflict</strong></p>
+<table>
+<thead>
+<tr>
+<th>ผู้รับผิดชอบ</th>
+<th>แก้ได้เฉพาะ</th>
+<th>ห้ามแตะ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Backend</td>
+<td><code>docker-compose.yml</code>, <code>.gitignore</code>, <code>backend/</code> ทั้งหมด (รวม <code>server.js</code>, <code>tests/</code>)</td>
+<td><code>frontend/</code>, <code>docs/</code></td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td><code>frontend/</code> ทั้งหมด (รวม <code>App.vue</code>)</td>
+<td><code>backend/</code>, <code>docs/</code>, <code>docker-compose.yml</code></td>
+</tr>
+<tr>
+<td>ออกแบบ/ทดสอบ</td>
+<td><code>docs/</code> ทั้งหมด (drawio, API.md, ผลทดสอบ, ภาพหน้าจอ)</td>
+<td><code>backend/</code>, <code>frontend/</code></td>
+</tr>
+</tbody>
+</table>
+<p>ไฟล์ที่ทุกขั้นต้องแก้ คือ <code>server.js</code> (เจ้าของคือ Backend) และ <code>App.vue</code> (เจ้าของคือ Frontend) มีเจ้าของคนเดียว จึงไม่ชนกัน ถ้าเห็นบั๊กในโฟลเดอร์ของคนอื่น <strong>บอกเจ้าของให้แก้</strong> อย่าแก้เอง</p>
+</section><section class="part"><h2>2. ตั้งค่าครั้งแรก (ทุกเครื่อง ทำวันตรวจเครื่อง)</h2>
+<p>ขอจากผู้จัด: ที่อยู่ repo ของทีม (เช่น <code>http://192.168.1.10:3000/team07/bpes.git</code>) ชื่อผู้ใช้ และรหัสผ่าน</p>
+<div class="codebox"><pre><code class="language-powershell">git config --global user.name "ชื่อของตัวเอง"
+git config --global user.email "ชื่อ@team.local"
+git config --global pull.rebase false
+</code></pre></div>
+<p>บรรทัดสุดท้ายสำคัญ ถ้าไม่ตั้ง <code>git pull</code> จะถามว่าจะรวมงานแบบไหนแล้วหยุด</p>
+<h3>คนที่ทำ Backend: สร้างโครงโปรเจกต์ แล้วส่งขึ้นก่อน (ขั้น 0)</h3>
+<div class="codebox"><pre><code class="language-powershell">cd C:\
+git clone http://192.168.1.10:3000/team07/bpes.git bpes
+cd bpes
+mkdir backend, backend\routes, backend\tests, frontend, frontend\src, frontend\src\pages, frontend\src\components, docs, backups
+</code></pre></div>
+<p>สร้าง <code>docker-compose.yml</code>, <code>.gitignore</code>, <code>backups/README.txt</code> ตามขั้น 0 แล้ว:</p>
+<div class="codebox"><pre><code class="language-powershell">git add -A
+git commit -m "ขั้น 0: โครงโปรเจกต์ + docker-compose"
+git push
+</code></pre></div>
+<p>ครั้งแรกจะถามชื่อผู้ใช้/รหัสผ่านของ server (Windows จำให้)</p>
+<h3>คนที่ทำ Frontend และ ออกแบบ: ดึงโปรเจกต์ลงเครื่อง</h3>
+<p>รอ Backend push เสร็จ แล้ว:</p>
+<div class="codebox"><pre><code class="language-powershell">cd C:\
+git clone http://192.168.1.10:3000/team07/bpes.git bpes
+cd bpes
+code .
+</code></pre></div>
+<blockquote>
+<p>git ไม่เก็บโฟลเดอร์ว่าง ถ้าโฟลเดอร์ <code>frontend\src\pages</code> ไม่มา ให้สร้างเองด้วย <code>mkdir</code></p>
+</blockquote>
+</section><section class="part check"><h2>3. รอบทำงาน: ทำซ้ำทุกครั้งที่ผ่านจุดเช็ก</h2>
+<div class="codebox"><pre><code class="language-powershell"># 1) บันทึกงานตัวเอง
+git add -A
+git commit -m "ขั้น 3B ผ่าน: หน้าผู้ใช้ + หน้ารอบ"
+
+# 2) ดึงงานของเพื่อนมารวม
+git pull
+
+# 3) ส่งงานรวมขึ้น server
+git push
+</code></pre></div>
+<p>ลำดับต้องเป็น <strong>commit → pull → push</strong> เสมอ ถ้า push ก่อน pull แล้วเพื่อนส่งขึ้นไปก่อน จะขึ้น <code>rejected ... fetch first</code> ให้ <code>git pull</code> แล้ว <code>git push</code> ใหม่</p>
+<p><strong>จังหวะส่งงานในแต่ละขั้น</strong></p>
+<ol>
+<li class="cbli"><input data-key="p1:c0" type="checkbox"/>Backend ผ่าน 2A → commit/pull/push → บอกทีม "API ขั้น 2 ขึ้นแล้ว"</li>
+<li class="cbli"><input data-key="p1:c1" type="checkbox"/>Frontend <code>git pull</code> เพื่อเอา backend ล่าสุด แล้วรัน <code>docker compose up -d</code> บนเครื่องตัวเอง ทดสอบหน้าเว็บกับ API จริง</li>
+<li class="cbli"><input data-key="p1:c2" type="checkbox"/>Frontend ผ่านจุดเช็ก → commit/pull/push → บอกทีม</li>
+<li class="cbli"><input data-key="p1:c3" type="checkbox"/>ออกแบบ <code>git pull</code> แล้วทดสอบบนเครื่องตัวเอง จับภาพลง <code>docs/</code> → commit/pull/push</li>
+<li class="cbli"><input data-key="p1:c4" type="checkbox"/>Backend <code>git pull</code> เพื่อให้เครื่องหลักมีงานครบ ก่อนเริ่มขั้นถัดไป</li>
+</ol>
+<p>แต่ละเครื่องมีฐานข้อมูลของตัวเอง (อยู่ใน Docker ของเครื่องนั้น) ข้อมูลทดสอบไม่ปนกัน ไฟล์ที่ไม่ต้องส่ง (<code>node_modules</code>, <code>backend/uploads</code>, ไฟล์สำรอง) ถูกกันไว้แล้วใน <code>.gitignore</code></p>
+<p><strong>เครื่องที่ใช้โชว์กรรมการ</strong> คือเครื่องของ Backend ก่อนหมดเวลา 15 นาที ทุกคน push ให้ครบ แล้วเครื่องหลัก <code>git pull</code> ครั้งสุดท้าย และรัน <code>docker compose up -d</code></p>
+</section><section class="part"><h2>4. ถ้าเกิด conflict (ชนกัน)</h2>
+<p>เกิดเมื่อสองคนแก้บรรทัดเดียวกันในไฟล์เดียวกัน ถ้าทำตามข้อ 1 แทบไม่เกิด ถ้าเกิด <code>git pull</code> จะขึ้น:</p>
+<div class="codebox"><pre><code class="language-text">CONFLICT (content): Merge conflict in backend/server.js
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre></div>
+<p>วิธีแก้:</p>
+<ol>
+<li>เปิดไฟล์ที่บอกใน VS Code จะเห็นแถบสี <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> (ของเรา) และ <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> (ของเพื่อน)</li>
+<li>กดปุ่มด้านบนแถบ: <strong>Accept Current Change</strong> (เก็บของเรา) / <strong>Accept Incoming Change</strong> (เก็บของเพื่อน) / <strong>Accept Both Changes</strong> (เก็บทั้งคู่) ให้ <strong>เจ้าของไฟล์</strong> เป็นคนตัดสิน</li>
+<li>บันทึกไฟล์ ตรวจว่าไม่มี <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> หลงเหลือ แล้ว:</li>
+</ol>
+<div class="codebox"><pre><code class="language-powershell">git add -A
+git commit -m "รวมงาน แก้ conflict"
+git push
+</code></pre></div>
+<p>แก้ไม่เป็น หรือกลัวพัง: <code>git merge --abort</code> จะกลับไปสภาพก่อน pull แล้วไปถามเจ้าของไฟล์</p>
+</section><section class="part"><h2>5. คำสั่งช่วยชีวิต</h2>
+<table>
+<thead>
+<tr>
+<th>ต้องการ</th>
+<th>คำสั่ง</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ดูว่าแก้ไฟล์อะไรไปบ้าง</td>
+<td><code>git status</code></td>
+</tr>
+<tr>
+<td>ดูประวัติงานทั้งทีม</td>
+<td><code>git log --oneline -10</code></td>
+</tr>
+<tr>
+<td>ทิ้งงานที่ยังไม่ commit กลับจุดเช็กล่าสุด</td>
+<td><code>git restore .</code></td>
+</tr>
+<tr>
+<td>ยกเลิกการ pull ที่ conflict</td>
+<td><code>git merge --abort</code></td>
+</tr>
+<tr>
+<td>เอาไฟล์เดียวกลับเป็นแบบล่าสุดบน server</td>
+<td><code>git checkout origin/main -- frontend/src/App.vue</code> (ชื่อ branch อาจเป็น <code>master</code> ดูจาก <code>git branch -a</code>)</td>
+</tr>
+</tbody>
+</table>
+</section><section class="part"><h2>6. เตรียมของที่ต้องใช้แบบไม่มีอินเทอร์เน็ต (ครูต้องคุยกับผู้จัดล่วงหน้า)</h2>
+<p>ในห้องแข่งออกเน็ตไม่ได้ และห้ามนำอุปกรณ์เก็บข้อมูลเข้า สิ่งที่ปกติดาวน์โหลดจากเน็ตจึงต้องมีอยู่ในเครื่องก่อน</p>
+<p><strong>Docker images ที่ compose ใช้:</strong> <code>mysql:8.4</code>, <code>phpmyadmin:5</code>, <code>node:22-alpine</code><br/>
+ถ้าผู้จัดเตรียม image รุ่นอื่น (เช่น <code>mysql:8.0</code>, <code>node:20</code>) ให้แก้บรรทัด <code>image:</code> ใน <code>docker-compose.yml</code> ให้ตรงกับที่มี ดูรายการที่มีด้วย <code>docker images</code> (ระบบนี้ใช้ได้กับ MySQL 8 ทุกรุ่น และ Node 20.19 ขึ้นไป)</p>
+<p><strong>ไลบรารี npm ที่ระบบนี้ต้องใช้</strong> (ตอน <code>docker compose up</code> จะสั่ง <code>npm install</code> ซึ่งต้องใช้เน็ต)</p>
+<table>
+<thead>
+<tr>
+<th>ฝั่ง</th>
+<th>แพ็กเกจ</th>
+<th>อยู่ใน Template ของผู้จัดตามเกณฑ์ข้อ 3.4.2.9–10 ไหม</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>backend</td>
+<td><code>express</code>, <code>jsonwebtoken</code>, <code>multer</code></td>
+<td>มี</td>
+</tr>
+<tr>
+<td>backend</td>
+<td><code>mysql2</code>, <code>bcryptjs</code>, <code>nodemon</code></td>
+<td>ไม่ได้ระบุ ต้องถามผู้จัด</td>
+</tr>
+<tr>
+<td>frontend</td>
+<td><code>vue</code>, <code>vuetify</code>, <code>@mdi/font</code>, <code>vite</code></td>
+<td>มี</td>
+</tr>
+<tr>
+<td>frontend</td>
+<td><code>@vitejs/plugin-vue</code></td>
+<td>ไม่ได้ระบุ ต้องถามผู้จัด</td>
+</tr>
+</tbody>
+</table>
+<p>ทางเลือก ถ้าผู้จัดไม่มีให้ครบ:</p>
+<ol>
+<li><strong>ดีที่สุด:</strong> ขอให้ผู้จัดมี npm mirror ในวง LAN (เช่น Verdaccio) แล้วตั้ง <code>npm config set registry http://ที่อยู่ที่ผู้จัดให้</code> บนทุกเครื่อง</li>
+<li><strong>วันตรวจเครื่อง (วันแรก) ถ้ายังมีเน็ต:</strong> รัน <code>docker compose up -d</code> ให้ครบทุกเครื่องหนึ่งครั้ง ไลบรารีจะถูกเก็บใน volume ของ Docker ใช้ต่อได้แม้ไม่มีเน็ต <strong>ห้ามใช้ <code>docker compose down -v</code></strong> หลังจากนั้น (จะลบไลบรารีทิ้ง)</li>
+<li><strong>ถ้าใช้ได้เฉพาะไลบรารีของผู้จัด:</strong> ใช้ <code>node_modules</code> จาก Template ของผู้จัด แล้วรัน backend/frontend ด้วย Node บนเครื่อง (ดูแผนสำรองใน <a href="#p11">แก้ปัญหาที่พบบ่อย.md</a>) ถ้าขาด <code>bcryptjs</code> ใช้ <code>bcrypt</code> แทนได้ (เปลี่ยน <code>require('bcryptjs')</code> เป็น <code>require('bcrypt')</code>) ถ้าขาด <code>nodemon</code> ให้เปลี่ยน script <code>dev</code> เป็น <code>node --watch server.js</code></li>
+</ol>
+</section><section class="part check"><h2>✅ จุดเช็ก (ซ้อมก่อนวันแข่ง)</h2>
+<table>
+<thead>
+<tr><th class="cb">ผ่าน</th>
+<th>ตรวจ</th>
+<th>ผลที่ต้องเห็น</th>
+</tr>
+</thead>
+<tbody>
+<tr><td class="cb"><input data-key="p1:c5" type="checkbox"/></td>
+<td>ทุกเครื่อง <code>git clone</code> ได้</td>
+<td>มีโฟลเดอร์ <code>C:\bpes</code> ที่มี <code>docker-compose.yml</code></td>
+</tr>
+<tr><td class="cb"><input data-key="p1:c6" type="checkbox"/></td>
+<td>Frontend แก้ <code>frontend/src/style.css</code> → commit/pull/push</td>
+<td>Backend <code>git pull</code> แล้วเห็นการแก้</td>
+</tr>
+<tr><td class="cb"><input data-key="p1:c7" type="checkbox"/></td>
+<td>ออกแบบ push ไฟล์ใน <code>docs/</code></td>
+<td>อีกสองเครื่อง <code>git pull</code> แล้วเห็นไฟล์</td>
+</tr>
+<tr><td class="cb"><input data-key="p1:c8" type="checkbox"/></td>
+<td>สองคน push พร้อมกัน (คนละโฟลเดอร์)</td>
+<td>คนที่ช้ากว่าได้ <code>rejected</code> → <code>git pull</code> → <code>git push</code> ผ่าน ไม่มี conflict</td>
+</tr>
+<tr><td class="cb"><input data-key="p1:c9" type="checkbox"/></td>
+<td>ซ้อม conflict: สองคนแก้บรรทัดเดียวกันใน <code>docs/test.md</code></td>
+<td>แก้ด้วยปุ่ม Accept ใน VS Code แล้ว push ได้</td>
+</tr>
+</tbody>
+</table></section><div class="pager"></div></article>
+<article class="page" id="p2"><h1>ขั้น 0 — เตรียมเครื่อง สร้างโปรเจกต์ และเปิดฐานข้อมูลด้วย Docker</h1><p><strong>ใครทำ:</strong> คนที่ 1 พิมพ์ คนที่ 2 ช่วยดู คนที่ 3 เปิด Draw.io เริ่มผังงานได้เลย (ดู <a href="คนที่3-งานออกแบบDrawio.md">คนที่3-งานออกแบบDrawio.md</a>)<br/>
+<strong>เวลา:</strong> 20 นาที<br/>
+<strong>ได้อะไร:</strong> MySQL + phpMyAdmin รันอยู่ใน Docker พร้อมให้ขั้นต่อไปสร้างตาราง</p>
+<section class="part"><h2>0.1 ตรวจโปรแกรม (ทุกเครื่อง)</h2>
+<p>เปิด PowerShell แล้วพิมพ์ทีละบรรทัด ทุกบรรทัดต้องขึ้นเลขเวอร์ชัน ไม่ใช่ error</p>
+<div class="codebox"><pre><code class="language-powershell">docker --version
+docker compose version
+git --version
+code --version
+</code></pre></div>
+<ul>
+<li>Docker Desktop ต้อง <strong>เปิดอยู่</strong> (ไอคอนวาฬที่มุมขวาล่างนิ่ง ไม่กระพริบ)</li>
+<li>ไม่ต้องติดตั้ง Node.js หรือ MySQL บนเครื่อง เพราะทั้งหมดรันใน Docker</li>
+</ul>
+</section><section class="part"><h2>0.2 สร้างโฟลเดอร์โปรเจกต์ (เครื่องหลัก)</h2>
+<blockquote>
+<p><strong>วันแข่งที่ผู้จัดมี Git server:</strong> ใช้ <code>git clone</code> แทน <code>git init</code> ตามหน้า <a href="#p1">01-ส่งไฟล์กันด้วยGit.md</a> ข้อ 2 ส่วนตอนซ้อมที่บ้านใช้คำสั่งด้านล่างได้เลย</p>
+</blockquote>
+<div class="codebox"><pre><code class="language-powershell">mkdir C:\bpes
+cd C:\bpes
+mkdir backend, backend\routes, backend\tests, frontend, frontend\src, frontend\src\pages, frontend\src\components, docs, backups
+git init
+git config user.name "ทีม"
+git config user.email "team@example.com"
+code .
+</code></pre></div>
+<p>โครงสร้างที่จะได้เมื่อจบทุกขั้น:</p>
+<div class="codebox"><pre><code class="language-text">bpes/
+├── docker-compose.yml      ← สั่งรันทุกอย่าง
+├── .gitignore
+├── backups/                ← ไฟล์สำรองฐานข้อมูล (ขั้น 8)
+├── docs/                   ← งานคนที่ 3: drawio, API.md, ผลทดสอบ
+├── backend/                ← งานคนที่ 1 (Express API)
+│   ├── package.json
+│   ├── server.js  db.js  helpers.js  auth.js  uploads.js  seed.js  schema.sql
+│   ├── routes/   users.js periods.js self.js files.js evaluate.js reports.js
+│   └── tests/    score.test.js api.test.js
+└── frontend/               ← งานคนที่ 2 (Vue + Vuetify)
+    ├── package.json  vite.config.js  index.html
+    └── src/  main.js api.js style.css App.vue
+        ├── components/ScoreField.vue CriteriaBox.vue PeopleBox.vue
+        └── pages/ LoginPage PasswordPage ProfilePage NotReady UsersPage PeriodsPage
+                   SelfPage EvaluatePage ReportsPage MyResultsPage (.vue)
+</code></pre></div>
+</section><section class="part who-1" data-who="1"><h2>0.3 ไฟล์ Docker Compose (คนที่ 1)<span class="tag t1">คนที่ 1</span></h2>
+<p>สร้างไฟล์ที่โฟลเดอร์บนสุด <code>C:\bpes\docker-compose.yml</code></p>
+<p>📄 <strong><code>docker-compose.yml</code></strong></p>
+<div class="codebox"><pre><code class="language-yaml"># รันทั้งระบบด้วยคำสั่งเดียว: docker compose up
+# db = MySQL, phpmyadmin = ดูตาราง, backend = Express API, frontend = Vue (Vite)
+services:
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234
+      MYSQL_DATABASE: bpes
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./backups:/backup
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-proot1234"]
+      interval: 5s
+      retries: 30
+
+  phpmyadmin:
+    image: phpmyadmin:5
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root1234
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+  backend:
+    image: node:22-alpine
+    working_dir: /app
+    command: sh -c "npm install &amp;&amp; npm run seed &amp;&amp; npm run dev"
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root1234
+      DB_NAME: bpes
+      PORT: 3301
+      JWT_SECRET: bpes-2568-change-this-to-a-long-random-secret-key
+    ports:
+      - "3301:3301"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    image: node:22-alpine
+    working_dir: /app
+    command: sh -c "npm install &amp;&amp; npm run dev"
+    environment:
+      API_URL: http://backend:3301
+    ports:
+      - "5175:5175"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
+</code></pre></div>
+<p><strong>เข้าใจโค้ด</strong></p>
+<ul>
+<li><code>services</code> คือโปรแกรม 4 ตัวที่จะรัน แต่ละตัวอยู่ใน container ของตัวเอง</li>
+<li><code>db</code> ใช้ MySQL 8.4 รหัส root คือ <code>root1234</code> สร้างฐานชื่อ <code>bpes</code> ให้อัตโนมัติ <code>utf8mb4</code> ทำให้เก็บภาษาไทยได้</li>
+<li><code>ports: "3307:3306"</code> แปลว่า เครื่องเราพอร์ต 3307 → MySQL ใน container พอร์ต 3306 (ใช้ 3307 เพื่อไม่ชนกับ MySQL ที่อาจลงไว้ในเครื่อง) ใช้กับ HeidiSQL/DBeaver ได้</li>
+<li><code>volumes: db_data</code> เก็บข้อมูลไว้ ปิดเครื่องแล้วข้อมูลไม่หาย</li>
+<li><code>backend</code> และ <code>frontend</code> ใช้ image <code>node:22-alpine</code> แล้วเอาโฟลเดอร์ของเรา <code>./backend</code> ไปวางที่ <code>/app</code> ใน container แก้ไฟล์ในเครื่องแล้ว container เห็นทันที</li>
+<li><code>/app/node_modules</code> แยกไว้ใน container เพราะไลบรารีที่ลงบน Linux ใช้กับ Windows ไม่ได้</li>
+<li><code>command</code> ของ backend: ติดตั้งไลบรารี → สร้างตาราง/บัญชี (<code>seed</code>) → รันแบบรีสตาร์ตเองเมื่อแก้ไฟล์ (<code>dev</code>)</li>
+<li><code>JWT_SECRET</code> คือกุญแจลงนาม token <strong>วันแข่งให้เปลี่ยนเป็นข้อความยาวของทีมเอง</strong> (อย่างน้อย 32 ตัวอักษร ภาษาอังกฤษ/ตัวเลข)</li>
+<li><code>depends_on ... service_healthy</code> ให้ backend รอจน MySQL พร้อมก่อน</li>
+</ul>
+</section><section class="part"><h2>0.4 ไฟล์ <code>.gitignore</code></h2>
+<p>📄 <strong><code>.gitignore</code></strong></p>
+<div class="codebox"><pre><code>node_modules/
+dist/
+backend/uploads/
+backups/*.sql
+</code></pre></div>
+<p>สร้างไฟล์ <code>backups/README.txt</code> ใส่ข้อความอะไรก็ได้ เพื่อให้ git เก็บโฟลเดอร์นี้ไว้</p>
+</section><section class="part"><h2>0.5 เปิดฐานข้อมูล</h2>
+<div class="codebox"><pre><code class="language-powershell">docker compose up -d db phpmyadmin
+docker compose ps
+</code></pre></div>
+<p>ครั้งแรกจะดาวน์โหลด image นานหน่อย</p>
+</section><section class="part check"><h2>✅ จุดเช็กขั้น 0</h2>
+<table>
+<thead>
+<tr><th class="cb">ผ่าน</th>
+<th>ตรวจ</th>
+<th>ผลที่ต้องเห็น</th>
+</tr>
+</thead>
+<tbody>
+<tr><td class="cb"><input data-key="p2:c0" type="checkbox"/></td>
+<td><code>docker compose ps</code></td>
+<td><code>db</code> สถานะ <code>healthy</code>, <code>phpmyadmin</code> สถานะ <code>Up</code></td>
+</tr>
+<tr><td class="cb"><input data-key="p2:c1" type="checkbox"/></td>
+<td>เปิด http://localhost:8080</td>
+<td>หน้า phpMyAdmin ซ้ายมือมีฐาน <code>bpes</code> (ยังว่าง)</td>
+</tr>
+</tbody>
+</table>
+</section><section class="part"><h2>💾 บันทึก</h2>
+<div class="codebox"><pre><code class="language-powershell">git add -A
+git commit -m "ขั้น 0 ผ่าน: docker db + phpmyadmin"
+git push        # ถ้าใช้ Git server ของผู้จัด
+</code></pre></div>
+<p>หลัง push แล้ว แจ้งคนที่ 2 และ 3 ให้ <code>git clone</code> ลงเครื่องตัวเอง</p>
+</section><section class="part"><h2>❌ ถ้าไม่ผ่าน</h2>
+<ul>
+<li><code>docker: command not found</code> / <code>error during connect</code> → ยังไม่ได้เปิด Docker Desktop ให้เปิดแล้วรอ 1 นาที</li>
+<li><code>port is already allocated</code> → มีโปรแกรมใช้พอร์ต 3307 หรือ 8080 อยู่ แก้เลขซ้ายใน <code>ports</code> เช่น <code>"8081:80"</code> แล้วเปิด http://localhost:8081</li>
+<li><code>yaml: line X</code> → ย่อหน้าผิด YAML ใช้ <strong>ช่องว่าง 2 ช่อง</strong> ห้ามใช้ Tab ตรวจบรรทัดที่บอก</li>
+</ul></section><div class="pager"></div></article>
+<article class="page" id="p3"><h1>ขั้น 1 — ตารางฐานข้อมูล และโครง Backend</h1><p><strong>ใครทำ:</strong> คนที่ 1 (Backend) · คนที่ 2 เริ่มพิมพ์ไฟล์ frontend ของขั้น 2 ล่วงหน้าได้ (ยังไม่ต้องรัน) · คนที่ 3 ทำผังงาน<br/>
+<strong>เวลา:</strong> 40 นาที<br/>
+<strong>คะแนนที่ได้เมื่อผ่าน:</strong> 2.1 มีอย่างน้อย 3 ตาราง · 2.2 ตารางสัมพันธ์กัน · 2.3 ชนิดข้อมูลเหมาะสม · 2.5 ตั้งชื่อตามมาตรฐาน (รวม 4 คะแนน)</p>
+<section class="part"><h2>1.1 ตารางฐานข้อมูล <code>backend/schema.sql</code></h2>
+<p>📄 <strong><code>backend/schema.sql</code></strong></p>
+<div class="codebox"><pre><code class="language-sql">-- 8 ตาราง อ่านจากบนลงล่าง ตารางลูกอ้างถึงตารางแม่ด้วย FOREIGN KEY
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  full_name VARCHAR(100) NOT NULL,
+  department VARCHAR(100) NOT NULL DEFAULT '',
+  position VARCHAR(100) NOT NULL DEFAULT '',
+  role ENUM('admin','evaluatee','evaluator') NOT NULL,
+  active BOOLEAN NOT NULL DEFAULT TRUE,
+  must_change_password BOOLEAN NOT NULL DEFAULT TRUE
+);
+CREATE TABLE IF NOT EXISTS periods (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  year INT NOT NULL,
+  start_date DATE NOT NULL,
+  end_date DATE NOT NULL,
+  status ENUM('draft','open','closed') NOT NULL DEFAULT 'draft',
+  published BOOLEAN NOT NULL DEFAULT FALSE
+);
+CREATE TABLE IF NOT EXISTS topics (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  period_id INT NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  FOREIGN KEY (period_id) REFERENCES periods(id)
+);
+CREATE TABLE IF NOT EXISTS indicators (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  topic_id INT NOT NULL,
+  name VARCHAR(150) NOT NULL,
+  detail TEXT NOT NULL,
+  weight DECIMAL(8,2) NOT NULL,
+  score_type ENUM('scale4','boolean') NOT NULL,
+  evidence_type ENUM('none','file','url') NOT NULL,
+  evidence_required BOOLEAN NOT NULL DEFAULT FALSE,
+  FOREIGN KEY (topic_id) REFERENCES topics(id)
+);
+CREATE TABLE IF NOT EXISTS participants (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  period_id INT NOT NULL,
+  user_id INT NOT NULL,
+  submitted BOOLEAN NOT NULL DEFAULT FALSE,
+  UNIQUE (period_id,user_id),
+  FOREIGN KEY (period_id) REFERENCES periods(id),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+CREATE TABLE IF NOT EXISTS assignments (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  participant_id INT NOT NULL,
+  evaluator_id INT NOT NULL,
+  committee_role ENUM('chair','member') NOT NULL,
+  comment TEXT,
+  signature VARCHAR(100),
+  submitted BOOLEAN NOT NULL DEFAULT FALSE,
+  UNIQUE (participant_id,evaluator_id),
+  FOREIGN KEY (participant_id) REFERENCES participants(id),
+  FOREIGN KEY (evaluator_id) REFERENCES users(id)
+);
+CREATE TABLE IF NOT EXISTS self_scores (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  participant_id INT NOT NULL,
+  indicator_id INT NOT NULL,
+  score INT NOT NULL,
+  description TEXT NOT NULL,
+  evidence_url VARCHAR(1000) NOT NULL DEFAULT '',
+  evidence_file VARCHAR(100),
+  UNIQUE (participant_id,indicator_id),
+  FOREIGN KEY (participant_id) REFERENCES participants(id),
+  FOREIGN KEY (indicator_id) REFERENCES indicators(id)
+);
+CREATE TABLE IF NOT EXISTS scores (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  assignment_id INT NOT NULL,
+  indicator_id INT NOT NULL,
+  score INT NOT NULL,
+  UNIQUE (assignment_id,indicator_id),
+  FOREIGN KEY (assignment_id) REFERENCES assignments(id),
+  FOREIGN KEY (indicator_id) REFERENCES indicators(id)
+);
+</code></pre></div>
+<p><strong>เข้าใจโค้ด (คนที่ 1 ต้องอธิบายกรรมการได้)</strong></p>
+<table>
+<thead>
+<tr>
+<th>ตาราง</th>
+<th>เก็บอะไร</th>
+<th>สัมพันธ์กับ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>users</code></td>
+<td>ผู้ใช้ทุกบทบาท (<code>admin</code>, <code>evaluatee</code> ผู้รับ, <code>evaluator</code> กรรมการ)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>periods</code></td>
+<td>รอบประเมิน วันเริ่ม–สิ้นสุด สถานะ <code>draft/open/closed</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>topics</code></td>
+<td>หัวข้อการประเมินในแต่ละรอบ</td>
+<td><code>period_id</code> → <code>periods</code></td>
+</tr>
+<tr>
+<td><code>indicators</code></td>
+<td>ตัวชี้วัด น้ำหนัก ชนิดคะแนน (<code>scale4</code> 1–4 หรือ <code>boolean</code> มี/ไม่มี) ชนิดหลักฐาน</td>
+<td><code>topic_id</code> → <code>topics</code></td>
+</tr>
+<tr>
+<td><code>participants</code></td>
+<td>ผู้รับที่อยู่ในรอบ</td>
+<td><code>period_id</code> → <code>periods</code>, <code>user_id</code> → <code>users</code></td>
+</tr>
+<tr>
+<td><code>assignments</code></td>
+<td>กรรมการที่ถูกมอบหมายให้ผู้รับ หน้าที่ประธาน/กรรมการร่วม ความเห็น ลายเซ็น</td>
+<td><code>participant_id</code> → <code>participants</code>, <code>evaluator_id</code> → <code>users</code></td>
+</tr>
+<tr>
+<td><code>self_scores</code></td>
+<td>คะแนนที่ผู้รับประเมินตนเอง + หลักฐาน</td>
+<td><code>participant_id</code>, <code>indicator_id</code></td>
+</tr>
+<tr>
+<td><code>scores</code></td>
+<td>คะแนนที่กรรมการให้</td>
+<td><code>assignment_id</code>, <code>indicator_id</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>ชนิดข้อมูล: <code>INT AUTO_INCREMENT</code> รหัส, <code>VARCHAR(n)</code> ข้อความสั้น, <code>TEXT</code> ข้อความยาว, <code>DATE</code> วันที่, <code>DECIMAL(8,2)</code> น้ำหนักทศนิยม, <code>ENUM</code> ค่าที่เลือกได้จำกัด, <code>BOOLEAN</code> ใช่/ไม่ใช่</li>
+<li>ชื่อตาราง/ฟิลด์เป็นภาษาอังกฤษตัวเล็ก คั่นด้วย <code>_</code> (snake_case) ตารางเป็นพหูพจน์ คีย์นอกลงท้าย <code>_id</code></li>
+<li><code>UNIQUE (period_id,user_id)</code> กันเพิ่มคนเดิมซ้ำในรอบเดียว</li>
+</ul>
+</section><section class="part"><h2>1.2 <code>backend/package.json</code></h2>
+<p>📄 <strong><code>backend/package.json</code></strong></p>
+<div class="codebox"><pre><code class="language-json">{
+  "name": "bpes-api",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "seed": "node seed.js",
+    "start": "node server.js",
+    "dev": "nodemon -L server.js",
+    "test": "node --test tests/score.test.js",
+    "test:api": "node --test tests/api.test.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "mysql2": "^3.14.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
+</code></pre></div>
+<ul>
+<li><code>nodemon -L</code> รีสตาร์ต server เองเมื่อแก้ไฟล์ (<code>-L</code> จำเป็นเมื่อรันบน Docker ใน Windows)</li>
+</ul>
+</section><section class="part"><h2>1.3 เชื่อมฐานข้อมูล <code>backend/db.js</code></h2>
+<p>📄 <strong><code>backend/db.js</code></strong></p>
+<div class="codebox"><pre><code class="language-js">// เชื่อมต่อ MySQL ค่าทั้งหมดมาจาก environment ใน docker-compose.yml
+const mysql = require('mysql2/promise');
+const settings = {
+  host: process.env.DB_HOST || 'db',
+  port: Number(process.env.DB_PORT || 3306),
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_NAME || 'bpes',
+  dateStrings: true,
+};
+const pool = mysql.createPool(settings);
+async function query(sql, values = []) {
+  const [rows] = await pool.execute(sql, values);
+  return rows;
+}
+module.exports = { query, pool, settings };
+</code></pre></div>
+<ul>
+<li><code>process.env.DB_HOST</code> อ่านค่าจาก <code>environment</code> ใน <code>docker-compose.yml</code> ชื่อ <code>db</code> คือชื่อ service ของ MySQL</li>
+<li><code>query(sql, values)</code> ใช้ <code>?</code> แทนค่าเสมอ ป้องกัน SQL Injection</li>
+</ul>
+</section><section class="part"><h2>1.4 ตัวช่วยที่ทุกไฟล์ใช้ <code>backend/helpers.js</code></h2>
+<p>📄 <strong><code>backend/helpers.js</code></strong></p>
+<div class="codebox"><pre><code class="language-js">// ตัวช่วยเล็ก ๆ ที่ทุกบทใช้ ไม่ต้องสร้าง class หรือ service หลายชั้น
+const { query } = require('./db');
+function check(condition, message, status = 400) {
+  if (!condition) {
+    const error = Error(message);
+    error.status = status;
+    throw error;
+  }
+}
+function text(value, max = 100, required = true) {
+  const result = String(value ?? '').trim();
+  check((!required || result.length &gt; 0) &amp;&amp; result.length &lt;= max, 'ข้อมูลว่างหรือยาวเกินกำหนด');
+  return result;
+}
+function ok(res, data = null, message = 'สำเร็จ') {
+  res.json({ status: 'success', message, data });
+}
+function route(fn) {
+  return (req, res, next) =&gt; Promise.resolve(fn(req, res, next)).catch(next);
+}
+async function getPeriod(id) {
+  const rows = await query('SELECT * FROM periods WHERE id=?', [id]);
+  check(rows.length, 'ไม่พบรอบ', 404);
+  return rows[0];
+}
+async function getParticipant(id) {
+  const rows = await query(
+    'SELECT p.*,u.full_name FROM participants p JOIN users u ON u.id=p.user_id WHERE p.id=?',
+    [id],
+  );
+  check(rows.length, 'ไม่พบผู้รับในรอบ', 404);
+  return rows[0];
+}
+async function items(periodId) {
+  return query(
+    'SELECT i.*,t.name AS topic FROM indicators i JOIN topics t ON t.id=i.topic_id WHERE t.period_id=? ORDER BY t.id,i.id',
+    [periodId],
+  );
+}
+function draft(period) {
+  check(period.status === 'draft', 'แก้ได้เฉพาะรอบฉบับร่าง');
+}
+function open(period) {
+  const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Bangkok' });
+  check(
+    period.status === 'open' &amp;&amp; today &gt;= period.start_date &amp;&amp; today &lt;= period.end_date,
+    'รอบยังไม่เปิด หรืออยู่นอกวันประเมิน',
+    403,
+  );
+}
+function scoreValid(item, score) {
+  return (
+    Number.isInteger(score) &amp;&amp;
+    (item.score_type === 'boolean' ? [0, 1].includes(score) : [1, 2, 3, 4].includes(score))
+  );
+}
+function percentage(indicators, scores) {
+  if (!indicators.length) return null;
+  let sum = 0,
+    weight = 0;
+  for (const item of indicators) {
+    const row = scores.find((s) =&gt; s.indicator_id === item.id);
+    if (!row || !scoreValid(item, row.score)) return null;
+    const max = item.score_type === 'boolean' ? 1 : 4;
+    sum += (row.score / max) * Number(item.weight);
+    weight += Number(item.weight);
+  }
+  return Math.round((sum / weight) * 10000) / 100;
+}
+function complete(item, row) {
+  if (!row || !scoreValid(item, row.score) || !row.description.trim()) return false;
+  if (!item.evidence_required) return true;
+  return item.evidence_type === 'file' ? !!row.evidence_file : !!row.evidence_url;
+}
+module.exports = {
+  check,
+  text,
+  ok,
+  route,
+  getPeriod,
+  getParticipant,
+  items,
+  draft,
+  open,
+  scoreValid,
+  percentage,
+  complete,
+};
+</code></pre></div>
+<p>ฟังก์ชันสำคัญ:</p>
+<ul>
+<li><code>check(เงื่อนไข, ข้อความ, status)</code> ถ้าเงื่อนไขเป็นเท็จ จะโยน error พร้อมรหัส HTTP ไปให้ตัวจัดการ error ใน <code>server.js</code></li>
+<li><code>text(value, max, required)</code> ตัดช่องว่าง ตรวจว่าไม่ว่างและไม่ยาวเกิน (Validate)</li>
+<li><code>ok(res, data, message)</code> ตอบ JSON รูปแบบเดียวกันทุก API <code>{status, message, data}</code></li>
+<li><code>route(fn)</code> ห่อฟังก์ชัน async ให้ error ไหลไปที่ตัวจัดการกลาง</li>
+<li><code>percentage(...)</code> คำนวณคะแนนถ่วงน้ำหนักเป็นร้อยละ (ใช้ทดสอบ Unit Test ในขั้น 7)</li>
+</ul>
+</section><section class="part"><h2>1.5 สร้างตารางและบัญชีฝึก <code>backend/seed.js</code></h2>
+<p>📄 <strong><code>backend/seed.js</code></strong></p>
+<div class="codebox"><pre><code class="language-js">// รันทุกครั้งที่ backend เริ่ม: สร้างตารางจาก schema.sql และบัญชีฝึก ไม่ลบข้อมูลเดิม
+const fs = require('node:fs');
+const path = require('node:path');
+const mysql = require('mysql2/promise');
+const bcrypt = require('bcryptjs');
+const { settings } = require('./db');
+async function seed() {
+  const db = await mysql.createConnection({ ...settings, multipleStatements: true });
+  try {
+    await db.query(fs.readFileSync(path.join(__dirname, 'schema.sql'), 'utf8'));
+    const users = [
+      ['admin', 'Admin1234!', 'ฝ่ายบุคลากร', 'admin'],
+      ['emp001', 'Emp1234!', 'ผู้รับหนึ่ง', 'evaluatee'],
+      ['emp002', 'Emp1234!', 'ผู้รับสอง', 'evaluatee'],
+      ['eval01', 'Eval1234!', 'กรรมการหนึ่ง', 'evaluator'],
+      ['eval02', 'Eval1234!', 'กรรมการสอง', 'evaluator'],
+    ];
+    for (const [username, password, name, role] of users) {
+      await db.execute(
+        'INSERT IGNORE INTO users(username,password,full_name,role) VALUES(?,?,?,?)',
+        [username, await bcrypt.hash(password, 10), name, role],
+      );
+    }
+    console.log('seed เสร็จ ฐานข้อมูล:', settings.database);
+  } finally {
+    await db.end();
+  }
+}
+seed().catch((error) =&gt; {
+  console.error('seed ไม่สำเร็จ:', error.code || error.message);
+  process.exit(1);
+});
+</code></pre></div>
+<ul>
+<li>รันทุกครั้งที่ backend เริ่ม แต่ใช้ <code>CREATE TABLE IF NOT EXISTS</code> และ <code>INSERT IGNORE</code> จึงไม่ลบข้อมูลเดิม</li>
+<li>รหัสผ่านเก็บแบบ hash ด้วย <code>bcrypt</code> ไม่เก็บรหัสจริง</li>
+</ul>
+</section><section class="part"><h2>1.6 ตัวเซิร์ฟเวอร์ <code>backend/server.js</code></h2>
+<p>พิมพ์ตามนี้ <strong>รวมบรรทัดที่มี <code>//</code> นำหน้าด้วย</strong> บรรทัดเหล่านั้นคือของขั้นต่อไป ตอนนี้ปิดไว้ก่อน</p>
+<p>📄 <strong><code>backend/server.js</code></strong></p>
+<div class="codebox"><pre><code class="language-js">// ลำดับสำคัญ: JSON → Login → ตรวจ token → API ตามระบบ → error (ไม่ส่งหน้าเว็บ)
+const express = require('express');
+const { query } = require('./db');
+const { ok, route } = require('./helpers');
+// const { auth } = require('./auth'); // ขั้น 2
+const app = express();
+app.use(express.json());
+
+// GET /api/health ตรวจว่า API ต่อฐานข้อมูลได้
+app.get(
+  '/api/health',
+  route(async (req, res) =&gt; {
+    await query('SELECT 1 FROM users LIMIT 1');
+    ok(res, { ready: true });
+  }),
+);
+// app.use('/api', require('./routes/users')); // ขั้น 2
+// app.use('/api', auth); // ขั้น 2
+// app.use('/api', require('./routes/periods')); // ขั้น 3
+// app.use('/api', require('./routes/self')); // ขั้น 4
+// app.use('/api', require('./routes/files')); // ขั้น 4
+// app.use('/api', require('./routes/evaluate')); // ขั้น 5
+// app.use('/api', require('./routes/reports')); // ขั้น 6
+
+// ไม่พบ API → 404
+app.use('/api', (req, res) =&gt;
+  res.status(404).json({ status: 'error', message: 'ไม่พบ API', data: null }),
+);
+// จัดการ error ทุกชนิดที่เดียว (Exception Handling)
+app.use((error, req, res, next) =&gt; {
+  let message = error.message,
+    status = error.status || 500;
+  if (error.code === 'ER_DUP_ENTRY') {
+    message = 'ข้อมูลซ้ำ กรุณาตรวจชื่อผู้ใช้หรือรายการที่เพิ่ม';
+    status = 400;
+  }
+  if (error.code === 'LIMIT_FILE_SIZE') {
+    message = 'ไฟล์เกิน 5 MB';
+    status = 400;
+  }
+  if (error.type === 'entity.parse.failed') {
+    message = 'รูปแบบ JSON ไม่ถูกต้อง';
+    status = 400;
+  }
+  if (status === 500) {
+    console.error(error);
+    message = 'ระบบขัดข้อง (' + (error.code || error.message) + ') ตรวจ log ของ backend';
+  }
+  res.status(status).json({ status: 'error', message, data: null });
+});
+const port = Number(process.env.PORT || 3301);
+// 0.0.0.0 = รับการเชื่อมต่อจากนอก container
+app.listen(port, '0.0.0.0', () =&gt; console.log('API พร้อมที่ http://localhost:' + port));
+</code></pre></div>
+<ul>
+<li>ลำดับ <code>app.use</code> สำคัญ: อ่าน JSON → API ที่ไม่ต้อง login → <code>auth</code> ตรวจ token → API ที่ต้อง login → 404 → ตัวจัดการ error</li>
+<li><code>0.0.0.0</code> ทำให้เข้าจากนอก container ได้ ถ้าใส่ <code>127.0.0.1</code> จะเข้าจากเบราว์เซอร์ไม่ได้</li>
+</ul>
+</section><section class="part"><h2>1.7 รัน backend</h2>
+<div class="codebox"><pre><code class="language-powershell">docker compose up -d db phpmyadmin backend
+docker compose logs -f backend
+</code></pre></div>
+<p>รอจนเห็น <code>seed เสร็จ ฐานข้อมูล: bpes</code> และ <code>API พร้อมที่ http://localhost:3301</code> แล้วกด <code>Ctrl+C</code> เพื่อออกจากการดู log (backend ยังรันต่อ)</p>
+</section><section class="part check"><h2>✅ จุดเช็กขั้น 1</h2>
+<table>
+<thead>
+<tr><th class="cb">ผ่าน</th>
+<th>ตรวจ</th>
+<th>ผลที่ต้องเห็น</th>
+</tr>
+</thead>
+<tbody>
+<tr><td class="cb"><input data-key="p3:c0" type="checkbox"/></td>
+<td>เบราว์เซอร์เปิด http://localhost:3301/api/health</td>
+<td><code>{"status":"success","message":"สำเร็จ","data":{"ready":true}}</code></td>
+</tr>
+<tr><td class="cb"><input data-key="p3:c1" type="checkbox"/></td>
+<td>phpMyAdmin → ฐาน <code>bpes</code></td>
+<td>มี 8 ตาราง: assignments, indicators, participants, periods, scores, self_scores, topics, users</td>
+</tr>
+<tr><td class="cb"><input data-key="p3:c2" type="checkbox"/></td>
+<td>ตาราง <code>users</code> → Browse</td>
+<td>มี 5 แถว admin, emp001, emp002, eval01, eval02 รหัสผ่านเป็นตัวอักษรยาว ๆ (hash)</td>
+</tr>
+<tr><td class="cb"><input data-key="p3:c3" type="checkbox"/></td>
+<td>phpMyAdmin → <code>bpes</code> → แท็บ Designer</td>
+<td>เห็นเส้นความสัมพันธ์ระหว่างตาราง (คนที่ 3 ใช้วาด ER)</td>
+</tr>
+</tbody>
+</table>
+</section><section class="part"><h2>💾 บันทึก</h2>
+<div class="codebox"><pre><code class="language-powershell">git add -A
+git commit -m "ขั้น 1 ผ่าน: ตาราง 8 ตาราง + health"
+</code></pre></div>
+<p><strong>แจ้งคนที่ 3:</strong> ตารางพร้อมแล้ว เริ่มวาด ER-Diagram ได้</p>
+</section><section class="part"><h2>❌ ถ้าไม่ผ่าน</h2>
+<ul>
+<li>log ขึ้น <code>seed ไม่สำเร็จ: ER_PARSE_ERROR</code> → <code>schema.sql</code> พิมพ์ผิด (ลืม <code>,</code> หรือ <code>)</code>) ดูชื่อตารางที่ error แก้แล้ว <code>docker compose restart backend</code></li>
+<li>log ขึ้น <code>ECONNREFUSED</code> → MySQL ยังไม่พร้อม รอแล้ว <code>docker compose restart backend</code></li>
+<li>log ขึ้น <code>Cannot find module './xxx'</code> → ชื่อไฟล์ผิด หรือลืมใส่ <code>//</code> หน้าบรรทัดของขั้นต่อไปใน <code>server.js</code></li>
+<li>log ขึ้น <code>SyntaxError</code> → ดูชื่อไฟล์และเลขบรรทัดใน log แล้วแก้ที่นั่น</li>
+<li><code>/api/health</code> ขึ้น <code>ระบบขัดข้อง</code> → ตาราง <code>users</code> ยังไม่ถูกสร้าง ดู log ของ seed</li>
+</ul></section><div class="pager"></div></article>
+<article class="page" id="p4"><h1>ขั้น 2 — Login ด้วย JWT และโครงหน้าเว็บ</h1><p><strong>ใครทำ:</strong> คนที่ 1 ทำ 2A (API) · คนที่ 2 ทำ 2B (หน้าเว็บ) พร้อมกัน · คนที่ 3 วาด ER แล้วทดสอบ Login ด้วย Thunder Client<br/>
+<strong>เวลา:</strong> 45 นาที<br/>
+<strong>คะแนนที่ได้เมื่อผ่าน:</strong> 6.2 POST รับ body · 6.4 Login JWT · 6.5 จัดการ error · 6.6 รูปแบบ JSON · 6.9 แยกไฟล์/router/async · 6.10 ตรวจสิทธิ์ · 5.2.1 สมัครใช้งาน · 5.2.2 แก้ข้อมูลส่วนตัว (รวม 8 คะแนน)</p>
+<hr/>
+<section class="part who-1" data-who="1"><h2>2A — คนที่ 1: API เข้าสู่ระบบและผู้ใช้<span class="tag t1">คนที่ 1</span></h2>
+<h3><code>backend/auth.js</code> — ตรวจ token และบทบาท</h3>
+<p>📄 <strong><code>backend/auth.js</code></strong></p>
+<div class="codebox"><pre><code class="language-js">const jwt = require('jsonwebtoken');
+const { query } = require('./db');
+const { check, route } = require('./helpers');
+const secret = process.env.JWT_SECRET;
+if (!secret || secret.length &lt; 32) throw Error('ตั้ง JWT_SECRET ใน docker-compose.yml ให้ยาวอย่างน้อย 32 ตัวอักษร');
+const auth = route(async (req, res, next) =&gt; {
+  let payload;
+  try {
+    payload = jwt.verify((req.headers.authorization || '').replace('Bearer ', ''), secret);
+  } catch {
+    check(false, 'กรุณาเข้าสู่ระบบ', 401);
+  }
+  const rows = await query(
+    'SELECT id,username,full_name,department,position,role,active,must_change_password FROM users WHERE id=?',
+    [payload.id],
+  );
+  check(rows.length &amp;&amp; rows[0].active, 'บัญชีถูกปิดหรือไม่พบผู้ใช้', 401);
+  req.user = rows[0];
+  // บัญชีที่ยังไม่เปลี่ยนรหัสครั้งแรก ใช้ได้แค่ดูข้อมูลตัวเองกับเปลี่ยนรหัส
+  check(
+    !req.user.must_change_password ||
+      (req.method === 'GET' &amp;&amp; req.path === '/me') ||
+      (req.method === 'PUT' &amp;&amp; req.path === '/me/password'),
+    'กรุณาเปลี่ยนรหัสผ่านครั้งแรกก่อนใช้งาน',
+    403,
+  );
+  next();
+});
+function role(name) {
+  return (req, res, next) =&gt;
+    req.user.role === name
+      ? next()
+      : res.status(403).json({ status: 'error', message: 'ไม่มีสิทธิ์', data: null });
+}
+function token(user) {
+  return jwt.sign({ id: user.id }, secret, { expiresIn: '8h' });
+}
+module.exports = { auth, role, token };
+</code></pre></div>
+<p><strong>เข้าใจโค้ด</strong></p>
+<ul>
+<li><code>jwt.sign({id}, secret, {expiresIn:'8h'})</code> สร้าง token ที่ <strong>ลงนาม</strong> ด้วย <code>JWT_SECRET</code> ใครแก้ token เองลายเซ็นจะไม่ตรง</li>
+<li><code>auth</code> อ่าน header <code>Authorization: Bearer &lt;token&gt;</code> → <code>jwt.verify</code> → หา user ในฐาน → เก็บไว้ที่ <code>req.user</code> ถ้าผิดตอบ 401</li>
+<li>ถ้า <code>must_change_password</code> ยังเป็น 1 จะใช้ได้แค่ <code>GET /me</code> กับ <code>PUT /me/password</code> (บังคับเปลี่ยนรหัสครั้งแรก) ตอบ 403</li>
+<li><code>role('admin')</code> กันคนผิดบทบาท ตอบ 403</li>
+<li>เปลี่ยนรหัสสำเร็จ → <code>must_change_password</code> เป็น 0 → token เดิมใช้ทุก API ได้ทันที ไม่ต้อง login ใหม่</li>
+</ul>
+<h3><code>backend/routes/users.js</code> — login, สมัคร, ข้อมูลส่วนตัว, จัดการผู้ใช้</h3>
+<p>📄 <strong><code>backend/routes/users.js</code></strong></p>
+<div class="codebox"><pre><code class="language-js">const router = require('express').Router();
+const bcrypt = require('bcryptjs');
+const { query } = require('../db');
+const { check, text, ok, route } = require('../helpers');
+const { auth, role, token } = require('../auth');
+const fields = 'id,username,full_name,department,position,role,active';
+function password(value) {
+  check(
+    typeof value === 'string' &amp;&amp; value.length &gt;= 8 &amp;&amp; Buffer.byteLength(value) &lt;= 72,
+    'รหัสผ่านอย่างน้อย 8 ตัวอักษร ไม่เกิน 72 ไบต์',
+  );
+  return value;
+}
+// POST /api/login — เข้าสู่ระบบ body: username, password → data.token (JWT)
+router.post(
+  '/login',
+  route(async (req, res) =&gt; {
+    const rows = await query('SELECT * FROM users WHERE username=?', [text(req.body.username, 50)]);
+    const user = rows[0];
+    check(
+      user &amp;&amp; user.active &amp;&amp; (await bcrypt.compare(String(req.body.password || ''), user.password)),
+      'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง',
+      401,
+    );
+    ok(res, { token: token(user) });
+  }),
+);
+// POST /api/register — สมัครผู้รับการประเมิน body: username, password, full_name
+router.post(
+  '/register',
+  route(async (req, res) =&gt; {
+    const b = req.body;
+    await query('INSERT INTO users(username,password,full_name,role) VALUES(?,?,?,?)', [
+      text(b.username, 50),
+      await bcrypt.hash(password(b.password), 10),
+      text(b.full_name),
+      'evaluatee',
+    ]);
+    ok(res, null, 'สมัครแล้ว เข้าสู่ระบบได้');
+  }),
+);
+// GET /api/me — ข้อมูลผู้ใช้ที่ login อยู่ (ต้องมี token)
+router.get(
+  '/me',
+  auth,
+  route(async (req, res) =&gt; ok(res, req.user)),
+);
+// PUT /api/me/password — เปลี่ยนรหัสผ่าน body: current_password, new_password, confirm_password
+router.put(
+  '/me/password',
+  auth,
+  route(async (req, res) =&gt; {
+    const b = req.body;
+    const next = password(b.new_password);
+    check(next === b.confirm_password, 'ยืนยันรหัสผ่านไม่ตรงกัน');
+    const [user] = await query('SELECT * FROM users WHERE id=?', [req.user.id]);
+    check(
+      await bcrypt.compare(String(b.current_password || ''), user.password),
+      'รหัสผ่านปัจจุบันไม่ถูกต้อง',
+      400,
+    );
+    check(next !== b.current_password, 'รหัสผ่านใหม่ต้องต่างจากรหัสเดิม');
+    await query('UPDATE users SET password=?,must_change_password=0 WHERE id=?', [
+      await bcrypt.hash(next, 10),
+      user.id,
+    ]);
+    ok(res, null, 'เปลี่ยนรหัสผ่านแล้ว');
+  }),
+);
+// PUT /api/me — แก้ข้อมูลส่วนตัว body: full_name, department, position
+router.put(
+  '/me',
+  auth,
+  route(async (req, res) =&gt; {
+    const b = req.body;
+    await query('UPDATE users SET full_name=?,department=?,position=? WHERE id=?', [
+      text(b.full_name),
+      text(b.department, 100, false),
+      text(b.position, 100, false),
+      req.user.id,
+    ]);
+    ok(res);
+  }),
+);
+// GET /api/users — รายชื่อผู้ใช้ทั้งหมด (admin)
+router.get(
+  '/users',
+  auth,
+  role('admin'),
+  route(async (req, res) =&gt; ok(res, await query(`SELECT ${fields} FROM users ORDER BY id`))),
+);
+// POST /api/users — เพิ่มผู้ใช้ body: username, password, full_name, department, position, role (admin)
+router.post(
+  '/users',
+  auth,
+  role('admin'),
+  route(async (req, res) =&gt; {
+    const b = req.body;
+    check(['evaluatee', 'evaluator'].includes(b.role), 'เลือกบทบาทให้ถูกต้อง');
+    await query(
+      'INSERT INTO users(username,password,full_name,department,position,role) VALUES(?,?,?,?,?,?)',
+      [
+        text(b.username, 50),
+        await bcrypt.hash(password(b.password), 10),
+        text(b.full_name),
+        text(b.department, 100, false),
+        text(b.position, 100, false),
+        b.role,
+      ],
+    );
+    ok(res);
+  }),
+);
+// PUT /api/users/:id — แก้ผู้ใช้ path: id body: full_name, department, position, active (admin)
+router.put(
+  '/users/:id',
+  auth,
+  role('admin'),
+  route(async (req, res) =&gt; {
+    const b = req.body;
+    check(Number(req.params.id) !== req.user.id || b.active, 'ห้ามปิดบัญชีตนเอง');
+    const result = await query(
+      'UPDATE users SET full_name=?,department=?,position=?,active=? WHERE id=?',
+      [
+        text(b.full_name),
+        text(b.department, 100, false),
+        text(b.position, 100, false),
+        b.active ? 1 : 0,
+        req.params.id,
+      ],
+    );
+    check(result.affectedRows, 'ไม่พบผู้ใช้', 404);
+    ok(res);
+  }),
+);
+module.exports = router;
+</code></pre></div>
+<ul>
+<li><code>/login</code> และ <code>/register</code> ไม่ต้องมี token ส่วนอื่นใส่ <code>auth</code> ไว้ในบรรทัดของตัวเอง</li>
+<li><code>bcrypt.compare</code> เทียบรหัสที่พิมพ์กับ hash ในฐาน</li>
+<li>คอมเมนต์ <code>// POST /api/login — ...</code> เหนือทุก route คือคำอธิบาย API และ parameter (เกณฑ์ 6.7, 6.8)</li>
+</ul>
+<h3>เปิดใช้ใน <code>server.js</code></h3>
+<p>เปิด <code>backend/server.js</code> แล้ว <strong>ลบ <code>//</code> หน้าบรรทัดที่ลงท้าย <code>// ขั้น 2</code> ทั้ง 3 บรรทัด</strong> ให้เป็นแบบนี้</p>
+<div class="codebox"><pre><code class="language-js">const { auth } = require('./auth'); // ขั้น 2
+...
+app.use('/api', require('./routes/users')); // ขั้น 2
+app.use('/api', auth); // ขั้น 2
+</code></pre></div>
+<p>nodemon จะรีสตาร์ตเอง ดู log ด้วย <code>docker compose logs -f backend</code></p>
+<div class="zone"><h3>✅ จุดเช็ก 2A (คนที่ 1 หรือคนที่ 3 ใช้ Thunder Client ใน VS Code)</h3>
+<table>
+<thead>
+<tr><th class="cb">ผ่าน</th>
+<th>คำขอ</th>
+<th>ผลที่ต้องเห็น</th>
+</tr>
+</thead>
+<tbody>
+<tr><td class="cb"><input data-key="p4:c0" type="checkbox"/></td>
+<td><code>POST http://localhost:3301/api/login</code> Body → JSON <code>{"username":"admin","password":"Admin1234!"}</code></td>
+<td>200 และ <code>data.token</code> เป็นข้อความยาว</td>
+</tr>
+<tr><td class="cb"><input data-key="p4:c1" type="checkbox"/></td>
+<td>ซ้ำแต่รหัสผิด <code>"password":"ผิด"</code></td>
+<td>401 <code>ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง</code></td>
+</tr>
+<tr><td class="cb"><input data-key="p4:c2" type="checkbox"/></td>
+<td><code>GET http://localhost:3301/api/me</code> ไม่ใส่ token</td>
+<td>401 <code>กรุณาเข้าสู่ระบบ</code></td>
+</tr>
+<tr><td class="cb"><input data-key="p4:c3" type="checkbox"/></td>
+<td><code>GET .../api/me</code> แท็บ Auth → Bearer ใส่ token</td>
+<td>200 ได้ข้อมูล admin <code>must_change_password: 1</code></td>
+</tr>
+<tr><td class="cb"><input data-key="p4:c4" type="checkbox"/></td>
+<td><code>GET .../api/users</code> ใส่ token เดิม</td>
+<td>403 <code>กรุณาเปลี่ยนรหัสผ่านครั้งแรกก่อนใช้งาน</code> (ถูกต้อง)</td>
+</tr>
+<tr><td class="cb"><input data-key="p4:c5" type="checkbox"/></td>
+<td><code>GET .../api/ไม่มี</code></td>
+<td>404 <code>ไม่พบ API</code></td>
+</tr>
+</tbody>
+</table>
+<p>คนที่ 3 จับภาพหน้าจอ Thunder Client ทุกข้อเก็บไว้ใน <code>docs/ทดสอบ/</code> ใช้เป็นหลักฐานส่วน 7</p>
+<p>💾 <code>git add -A</code> แล้ว <code>git commit -m "ขั้น 2A ผ่าน: login JWT"</code></p>
+</div><hr/>
+</section><section class="part check"><h2>✅ จุดเช็กขั้น 2 (ทั้งทีม)</h2>
+<table>
+<thead>
+<tr><th class="cb">ผ่าน</th>
+<th>ตรวจ</th>
+<th>ผลที่ต้องเห็น</th>
+</tr>
+</thead>
+<tbody>
+<tr><td class="cb"><input data-key="p4:c6" type="checkbox"/></td>
+<td>เปิด http://localhost:5175</td>
+<td>หน้า "เข้าสู่ระบบ"</td>
+</tr>
+<tr><td class="cb"><input data-key="p4:c7" type="checkbox"/></td>
+<td>login <code>admin</code> / <code>Admin1234!</code></td>
+<td>เด้งไปหน้า "เปลี่ยนรหัสผ่าน" เมนูอื่นยังไม่ขึ้น</td>
+</tr>
+<tr><td class="cb"><input data-key="p4:c8" type="checkbox"/></td>
+<td>เปลี่ยนรหัสเป็น <code>Admin1234!x</code></td>
+<td>ข้อความเขียว เมนูขึ้น: รอบประเมิน, ผู้ใช้, ข้อมูลส่วนตัว, เปลี่ยนรหัสผ่าน</td>
+</tr>
+<tr><td class="cb"><input data-key="p4:c9" type="checkbox"/></td>
+<td>กด "รอบประเมิน" หรือ "ผู้ใช้"</td>
+<td>ข้อความ "ส่วนนี้อยู่ในบทถัดไป" (ถูกต้อง ยังไม่ถึงขั้น)</td>
+</tr>
+<tr><td class="cb"><input data-key="p4:c10" type="checkbox"/></td>
+<td>ข้อมูลส่วนตัว → แก้แผนก → บันทึก</td>
+<td>ข้อความเขียว "บันทึกข้อมูลส่วนตัวแล้ว"</td>
+</tr>
+<tr><td class="cb"><input data-key="p4:c11" type="checkbox"/></td>
+<td>ออกจากระบบ → "สมัครผู้รับ" → สมัคร <code>emp003</code> รหัส 8 ตัว</td>
+<td>"สมัครสำเร็จ กดเข้าสู่ระบบ"</td>
+</tr>
+<tr><td class="cb"><input data-key="p4:c12" type="checkbox"/></td>
+<td>สมัครชื่อเดิมซ้ำ</td>
+<td>กล่องแดง "ข้อมูลซ้ำ..."</td>
+</tr>
+<tr><td class="cb"><input data-key="p4:c13" type="checkbox"/></td>
+<td>กด F12 → Console</td>
+<td>ไม่มีข้อความสีแดง</td>
+</tr>
+</tbody>
+</table>
+</section><section class="part"><h2>💾 บันทึก</h2>
+<div class="codebox"><pre><code class="language-powershell">git add -A
+git commit -m "ขั้น 2 ผ่าน: login + หน้าเว็บโครงหลัก"
+</code></pre></div>
+</section><section class="part"><h2>❌ ถ้าไม่ผ่าน</h2>
+<ul>
+<li>หน้าเว็บกล่องแดง "เชื่อมต่อ API ไม่ได้" → backend ล่ม ดู <code>docker compose logs backend</code></li>
+<li>log backend <code>ตั้ง JWT_SECRET ใน docker-compose.yml...</code> → <code>JWT_SECRET</code> สั้นกว่า 32 ตัว แก้แล้ว <code>docker compose up -d</code></li>
+<li>หน้าเว็บขาวทั้งหน้า → F12 → Console ดูชื่อไฟล์ที่ error มักเป็นพิมพ์ชื่อ import ผิด หรือ <code>&lt;template&gt;</code> ปิดแท็กไม่ครบ</li>
+<li>แก้ไฟล์แล้วหน้าเว็บไม่เปลี่ยน → ตรวจว่ามี <code>watch: { usePolling: true }</code> แล้ว <code>docker compose restart frontend</code></li>
+<li><strong>แก้ไม่ทันจริง ๆ:</strong> <code>git restore .</code> กลับไปขั้น 1 แล้วไปช่วยงานส่วนอื่น</li>
+</ul></section><div class="pager"></div></article>
+<article class="page" id="p5"><h1>ขั้น 3 — ฝ่ายบุคลากร: ผู้ใช้ รอบประเมิน หัวข้อ ตัวชี้วัด และมอบหมายกรรมการ</h1><p><strong>ใครทำ:</strong> คนที่ 1 ทำ 3A · คนที่ 2 ทำ 3B · คนที่ 3 ทำ Layout หน้าจอ (ส่วน 3)<br/>
+<strong>เวลา:</strong> 60 นาที (ขั้นที่ได้คะแนนมากที่สุด)<br/>
+<strong>คะแนนที่ได้เมื่อผ่าน:</strong> 5.1.1 เพิ่มหัวข้อ · 5.1.2 กำหนดวันเปิด/ปิด · 5.1.3 เพิ่มตัวชี้วัด (ชื่อ รายละเอียด น้ำหนัก หลักฐาน) · 5.1.4 รูปแบบ มี/ไม่มี และ 1–4 (2 คะแนน) · 5.1.6 จัดการผู้รับ · 5.1.7 เพิ่มกรรมการ · 5.1.8 มอบหมายกรรมการ · 5.1.9 บทบาทประธาน/กรรมการร่วม · 6.1 GET พร้อม query/path (รวม 10 คะแนน)</p>
+<hr/>
+<section class="part who-1" data-who="1"><h2>3A — คนที่ 1: <code>backend/routes/periods.js</code><span class="tag t1">คนที่ 1</span></h2>
+<p>📄 <strong><code>backend/routes/periods.js</code></strong></p>
+<div class="codebox"><pre><code class="language-js">const router = require('express').Router();
+const { query } = require('../db');
+const { role } = require('../auth');
+const { check, text, ok, route, getPeriod, items, draft } = require('../helpers');
+function dates(b) {
+  check(/^\d{4}-\d{2}-\d{2}$/.test(b.start_date), 'กรอกวันเริ่ม');
+  check(/^\d{4}-\d{2}-\d{2}$/.test(b.end_date), 'กรอกวันสิ้นสุด');
+  check(b.start_date &lt;= b.end_date, 'วันสิ้นสุดต้องไม่ก่อนวันเริ่ม');
+  check(Number(b.year) &gt;= 2000 &amp;&amp; Number(b.year) &lt;= 2100, 'ใช้ปี ค.ศ. 2000–2100');
+}
+// GET /api/periods — รายการรอบ query: year (ไม่บังคับ) (admin)
+router.get(
+  '/periods',
+  role('admin'),
+  route(async (req, res) =&gt; {
+    ok(
+      res,
+      req.query.year
+        ? await query('SELECT * FROM periods WHERE year=? ORDER BY id DESC', [req.query.year])
+        : await query('SELECT * FROM periods ORDER BY id DESC'),
+    );
+  }),
+);
+// POST /api/periods — สร้างรอบ body: name, year, start_date, end_date (admin)
+router.post(
+  '/periods',
+  role('admin'),
+  route(async (req, res) =&gt; {
+    const b = req.body;
+    dates(b);
+    const r = await query('INSERT INTO periods(name,year,start_date,end_date) VALUES(?,?,?,?)', [
+      text(b.name),
+      Number(b.year),
+      b.start_date,
+      b.end_date,
+    ]);
+    ok(res, { id: r.insertId });
+  }),
+);
+// PUT /api/periods/:id — แก้รอบที่ยังเป็นฉบับร่าง path: id (admin)
+router.put(
+  '/periods/:id',
+  role('admin'),
+  route(async (req, res) =&gt; {
+    draft(await getPeriod(req.params.id));
+    const b = req.body;
+    dates(b);
+    await query('UPDATE periods SET name=?,year=?,start_date=?,end_date=? WHERE id=?', [
+      text(b.name),
+      Number(b.year),
+      b.start_date,
+      b.end_date,
+      req.params.id,
+    ]);
+    ok(res);
+  }),
+);
+// GET /api/periods/:id — รายละเอียดรอบ หัวข้อ ตัวชี้วัด ผู้รับ กรรมการ path: id (admin)
+router.get(
+  '/periods/:id',
+  role('admin'),
+  route(async (req, res) =&gt; {
+    const period = await getPeriod(req.params.id);
+    const topics = await query('SELECT * FROM topics WHERE period_id=?', [period.id]);
+    const participants = await query(
+      'SELECT p.*,u.full_name FROM participants p JOIN users u ON u.id=p.user_id WHERE period_id=?',
+      [period.id],
+    );
+    const assignments = await query(
+      'SELECT a.*,u.full_name AS evaluator_name,v.full_name AS evaluatee_name FROM assignments a JOIN users u ON u.id=a.evaluator_id JOIN participants p ON p.id=a.participant_id JOIN users v ON v.id=p.user_id WHERE p.period_id=?',
+      [period.id],
+    );
+    ok(res, { period, topics, indicators: await items(period.id), participants, assignments });
+  }),
+);
+// POST /api/periods/:id/topics — เพิ่มหัวข้อ path: id body: name (admin)
+router.post(
+  '/periods/:id/topics',
+  role('admin'),
+  route(async (req, res) =&gt; {
+    draft(await getPeriod(req.params.id));
+    await query('INSERT INTO topics(period_id,name) VALUES(?,?)', [
+      req.params.id,
+      text(req.body.name),
+    ]);
+    ok(res);
+  }),
+);
+// PUT /api/topics/:id — แก้ชื่อหัวข้อ path: id body: name (admin)
+router.put(
+  '/topics/:id',
+  role('admin'),
+  route(async (req, res) =&gt; {
+    const rows = await query('SELECT * FROM topics WHERE id=?', [req.params.id]);
+    check(rows.length, 'ไม่พบหัวข้อ', 404);
+    draft(await getPeriod(rows[0].period_id));
+    await query('UPDATE topics SET name=? WHERE id=?', [text(req.body.name), req.params.id]);
+    ok(res);
+  }),
+);
+async function indicatorData(b) {
+  const topics = await query('SELECT * FROM topics WHERE id=?', [b.topic_id]);
+  check(topics.length, 'เลือกหัวข้อ');
+  draft(await getPeriod(topics[0].period_id));
+  check(
+    Number.isFinite(Number(b.weight)) &amp;&amp; Number(b.weight) &gt; 0 &amp;&amp; Number(b.weight) &lt;= 10000,
+    'น้ำหนักต้องมากกว่า 0 และไม่เกิน 10000',
+  );
+  check(['scale4', 'boolean'].includes(b.score_type), 'ชนิดคะแนนไม่ถูกต้อง');
+  check(['none', 'file', 'url'].includes(b.evidence_type), 'ชนิดหลักฐานไม่ถูกต้อง');
+  check(b.evidence_type !== 'none' || !b.evidence_required, 'ไม่ใช้หลักฐานต้องไม่บังคับแนบ');
+  return [
+    b.topic_id,
+    text(b.name, 150),
+    text(b.detail, 2000, false),
+    Number(b.weight),
+    b.score_type,
+    b.evidence_type,
+    b.evidence_required ? 1 : 0,
+  ];
+}
+// POST /api/indicators — เพิ่มตัวชี้วัด body: topic_id, name, detail, weight, score_type, evidence_type, evidence_required (admin)
+router.post(
+  '/indicators',
+  role('admin'),
+  route(async (req, res) =&gt; {
+    await query(
+      'INSERT INTO indicators(topic_id,name,detail,weight,score_type,evidence_type,evidence_required) VALUES(?,?,?,?,?,?,?)',
+      await indicatorData(req.body),
+    );
+    ok(res);
+  }),
+);
+// PUT /api/indicators/:id — แก้ตัวชี้วัด path: id (admin)
+router.put(
+  '/indicators/:id',
+  role('admin'),
+  route(async (req, res) =&gt; {
+    const old = await query('SELECT * FROM indicators WHERE id=?', [req.params.id]);
+    check(old.length, 'ไม่พบตัวชี้วัด', 404);
+    check(Number(req.body.topic_id) === old[0].topic_id, 'ฉบับพื้นฐานไม่ย้ายตัวชี้วัดข้ามหัวข้อ');
+    await query(
+      'UPDATE indicators SET topic_id=?,name=?,detail=?,weight=?,score_type=?,evidence_type=?,evidence_required=? WHERE id=?',
+      [...(await indicatorData(req.body)), req.params.id],
+    );
+    ok(res);
+  }),
+);
+// DELETE /api/indicators/:id — ลบตัวชี้วัด path: id (admin)
+router.delete(
+  '/indicators/:id',
+  role('admin'),
+  route(async (req, res) =&gt; {
+    const rows = await query(
+      'SELECT t.period_id FROM indicators i JOIN topics t ON t.id=i.topic_id WHERE i.id=?',
+      [req.params.id],
+    );
+    check(rows.length, 'ไม่พบตัวชี้วัด', 404);
+    draft(await getPeriod(rows[0].period_id));
+    await query('DELETE FROM indicators WHERE id=?', [req.params.id]);
+    ok(res);
+  }),
+);
+// POST /api/periods/:id/participants — เพิ่มผู้รับเข้ารอบ path: id body: user_id (admin)
+router.post(
+  '/periods/:id/participants',
+  role('admin'),
+  route(async (req, res) =&gt; {
+    draft(await getPeriod(req.params.id));
+    const users = await query("SELECT id FROM users WHERE id=? AND role='evaluatee' AND active=1", [
+      req.body.user_id,
+    ]);
+    check(users.length, 'เลือกผู้รับที่เปิดใช้งาน');
+    await query('INSERT INTO participants(period_id,user_id) VALUES(?,?)', [
+      req.params.id,
+      req.body.user_id,
+    ]);
+    ok(res);
+  }),
+);
+// POST /api/assignments — มอบหมายกรรมการ body: participant_id, evaluator_id, committee_role (admin)
+router.post(
+  '/assignments',
+  role('admin'),
+  route(async (req, res) =&gt; {
+    const b = req.body;
+    const people = await query('SELECT * FROM participants WHERE id=?', [b.participant_id]);
+    check(people.length, 'เลือกผู้รับในรอบ');
+    draft(await getPeriod(people[0].period_id));
+    const users = await query("SELECT id FROM users WHERE id=? AND role='evaluator' AND active=1", [
+      b.evaluator_id,
+    ]);
+    check(users.length, 'เลือกกรรมการที่เปิดใช้งาน');
+    check(['chair', 'member'].includes(b.committee_role), 'เลือกหน้าที่');
+    if (b.committee_role === 'chair')
+      check(
+        !(
+          await query(
+            "SELECT id FROM assignments WHERE participant_id=? AND committee_role='chair'",
+            [b.participant_id],
+          )
+        ).length,
+        'มีประธานแล้ว',
+      );
+    await query(
+      'INSERT INTO assignments(participant_id,evaluator_id,committee_role) VALUES(?,?,?)',
+      [b.participant_id, b.evaluator_id, b.committee_role],
+    );
+    ok(res);
+  }),
+);
+// DELETE /api/assignments/:id — ถอนการมอบหมาย path: id (admin)
+router.delete(
+  '/assignments/:id',
+  role('admin'),
+  route(async (req, res) =&gt; {
+    const rows = await query(
+      'SELECT p.period_id FROM assignments a JOIN participants p ON p.id=a.participant_id WHERE a.id=?',
+      [req.params.id],
+    );
+    check(rows.length, 'ไม่พบงาน', 404);
+    draft(await getPeriod(rows[0].period_id));
+    await query('DELETE FROM assignments WHERE id=?', [req.params.id]);
+    ok(res);
+  }),
+);
+// POST /api/periods/:id/open — เปิดรอบ path: id (admin)
+router.post(
+  '/periods/:id/open',
+  role('admin'),
+  route(async (req, res) =&gt; {
+    const p = await getPeriod(req.params.id);
+    draft(p);
+    check((await items(p.id)).length, 'เพิ่มตัวชี้วัดก่อน');
+    const people = await query('SELECT id FROM participants WHERE period_id=?', [p.id]);
+    check(people.length, 'เพิ่มผู้รับก่อน');
+    for (const person of people) {
+      const a = await query('SELECT * FROM assignments WHERE participant_id=?', [person.id]);
+      check(
+        a.filter((x) =&gt; x.committee_role === 'chair').length === 1,
+        'ผู้รับทุกคนต้องมีประธานหนึ่งคน',
+      );
+    }
+    await query("UPDATE periods SET status='open' WHERE id=?", [p.id]);
+    ok(res);
+  }),
+);
+// POST /api/periods/:id/close — ปิดรอบ path: id (admin)
+router.post(
+  '/periods/:id/close',
+  role('admin'),
+  route(async (req, res) =&gt; {
+    check((await getPeriod(req.params.id)).status === 'open', 'รอบต้องเปิดอยู่');
+    await query("UPDATE periods SET status='closed' WHERE id=?", [req.params.id]);
+    ok(res);
+  }),
+);
+module.exports = router;
+</code></pre></div>
+<p><strong>เข้าใจโค้ด</strong></p>
+<ul>
+<li>ทุก route มี <code>role('admin')</code> เฉพาะฝ่ายบุคลากร</li>
+<li><code>GET /periods?year=2026</code> ใช้ <strong>query parameter</strong> · <code>GET /periods/:id</code> ใช้ <strong>path parameter</strong> (เกณฑ์ 6.1)</li>
+<li><code>dates(b)</code> ตรวจรูปแบบวันที่ <code>YYYY-MM-DD</code> วันสิ้นสุดต้องไม่ก่อนวันเริ่ม ปีอยู่ในช่วง 2000–2100</li>
+<li><code>draft(period)</code> แก้เกณฑ์ได้เฉพาะรอบที่ยังเป็นฉบับร่าง เปิดรอบแล้วห้ามแก้ (กันคะแนนเพี้ยน)</li>
+<li><code>indicatorData</code> ตรวจน้ำหนัก &gt; 0, ชนิดคะแนน <code>scale4</code> / <code>boolean</code>, ชนิดหลักฐาน <code>none</code> / <code>file</code> / <code>url</code></li>
+<li><code>POST /assignments</code> ห้ามมีประธานสองคนในผู้รับคนเดียว · <code>POST /periods/:id/open</code> ตรวจว่าทุกคนมีประธาน 1 คนก่อนเปิด</li>
+</ul>
+<p><strong>เปิดใช้ใน <code>server.js</code>:</strong> ลบ <code>//</code> หน้าบรรทัด <code>// ขั้น 3</code></p>
+<div class="codebox"><pre><code class="language-js">app.use('/api', require('./routes/periods')); // ขั้น 3
+</code></pre></div>
+<div class="zone"><h3>✅ จุดเช็ก 3A (Thunder Client ด้วย token ของ admin ที่เปลี่ยนรหัสแล้ว)</h3>
+<table>
+<thead>
+<tr><th class="cb">ผ่าน</th>
+<th>คำขอ</th>
+<th>ผล</th>
+</tr>
+</thead>
+<tbody>
+<tr><td class="cb"><input data-key="p5:c0" type="checkbox"/></td>
+<td><code>POST /api/periods</code> body <code>{"name":"รอบ 1/2569","year":2026,"start_date":"วันนี้ YYYY-MM-DD","end_date":"อีก 30 วัน"}</code></td>
+<td>200 <code>data.id</code></td>
+</tr>
+<tr><td class="cb"><input data-key="p5:c1" type="checkbox"/></td>
+<td><code>GET /api/periods?year=2026</code></td>
+<td>200 ได้รายการรอบ</td>
+</tr>
+<tr><td class="cb"><input data-key="p5:c2" type="checkbox"/></td>
+<td><code>GET /api/periods/999</code></td>
+<td>404 <code>ไม่พบรอบ</code></td>
+</tr>
+<tr><td class="cb"><input data-key="p5:c3" type="checkbox"/></td>
+<td><code>POST /api/periods</code> ไม่ใส่วันที่</td>
+<td>400 <code>กรอกวันที่ให้ครบ</code></td>
+</tr>
+</tbody>
+</table>
+<p>💾 <code>git commit -am "ขั้น 3A ผ่าน: API รอบประเมิน"</code> (ใช้ <code>git add -A</code> ก่อนถ้ามีไฟล์ใหม่)</p>
+</div><hr/>
+</section><section class="part check"><h2>✅ จุดเช็กขั้น 3 (ทั้งทีม ทำบนหน้าเว็บ ด้วย admin)</h2>
+<p>ทำตามลำดับนี้ ข้อมูลชุดนี้จะใช้ต่อในขั้น 4–6</p>
+<ol>
+<li class="cbli"><input data-key="p5:c4" type="checkbox"/>เมนู <strong>ผู้ใช้</strong> → เพิ่มกรรมการ <code>eval03</code> บทบาท "กรรมการ" → ตารางขึ้นแถวใหม่ (5.1.7)</li>
+<li class="cbli"><input data-key="p5:c5" type="checkbox"/>กด "แก้ไข" ผู้ใช้ <code>emp002</code> เปลี่ยนแผนก → บันทึก → ตารางเปลี่ยน (5.1.6)</li>
+<li class="cbli"><input data-key="p5:c6" type="checkbox"/>เมนู <strong>รอบประเมิน</strong> → กรอกชื่อรอบ ปี ค.ศ. <strong>วันเริ่ม = วันนี้</strong> วันสิ้นสุด = อีกหลายวัน → บันทึกรอบ (5.1.2)</li>
+<li class="cbli"><input data-key="p5:c7" type="checkbox"/>เพิ่มหัวข้อ "ด้านการสอน" (5.1.1)</li>
+<li class="cbli"><input data-key="p5:c8" type="checkbox"/>เพิ่มตัวชี้วัด "แผนการสอน" น้ำหนัก 60 ชนิด "ระดับ 1–4" หลักฐาน "ไฟล์ PDF / รูปภาพ" บังคับ (5.1.3, 5.1.4)</li>
+<li class="cbli"><input data-key="p5:c9" type="checkbox"/>เพิ่มตัวชี้วัด "มีเว็บไซต์รายวิชา" น้ำหนัก 40 ชนิด "มี / ไม่มี" หลักฐาน "URL" บังคับ (5.1.4)</li>
+<li class="cbli"><input data-key="p5:c10" type="checkbox"/>ส่วนที่ 2 เพิ่มผู้รับ "ผู้รับหนึ่ง" เข้ารอบ</li>
+<li class="cbli"><input data-key="p5:c11" type="checkbox"/>ส่วนที่ 3 มอบหมาย "กรรมการหนึ่ง" เป็น <strong>ประธาน</strong> และ "กรรมการสอง" เป็น <strong>กรรมการร่วม</strong> (5.1.8, 5.1.9)</li>
+<li class="cbli"><input data-key="p5:c12" type="checkbox"/>ลองมอบหมายประธานคนที่สองให้คนเดิม → กล่องแดง "มีประธานแล้ว" (ถูกต้อง)</li>
+<li class="cbli"><input data-key="p5:c13" type="checkbox"/>ช่องกรองปี ใส่ 2026 → ค้นหา → เห็นรอบ</li>
+<li class="cbli"><input data-key="p5:c14" type="checkbox"/>กด <strong>เปิดรอบ</strong> → สถานะเป็น <code>open</code> ปุ่มแก้ไขหายไป</li>
+</ol>
+</section><section class="part"><h2>💾 บันทึก</h2>
+<div class="codebox"><pre><code class="language-powershell">git add -A
+git commit -m "ขั้น 3 ผ่าน: ฝ่ายบุคลากรตั้งรอบ เกณฑ์ กรรมการ"
+</code></pre></div>
+</section><section class="part"><h2>❌ ถ้าไม่ผ่าน</h2>
+<ul>
+<li>กด "เปิดรอบ" แล้วขึ้น "ผู้รับทุกคนต้องมีประธานหนึ่งคน" → มอบหมายประธานให้ผู้รับทุกคนก่อน</li>
+<li>"แก้ได้เฉพาะรอบฉบับร่าง" → รอบเปิดแล้ว ให้สร้างรอบใหม่</li>
+<li>เลือกผู้รับไม่ได้ (รายการว่าง) → ยังไม่มีผู้ใช้บทบาท "ผู้รับการประเมิน" ที่เปิดใช้งาน</li>
+<li><code>Failed to resolve import "../components/CriteriaBox.vue"</code> → ยังไม่ได้สร้างไฟล์ หรือสร้างผิดโฟลเดอร์ (ต้องอยู่ใน <code>components</code> ไม่ใช่ <code>pages</code>)</li>
+<li><strong>ถ้าหน้า PeriodsPage พังแก้ไม่ทัน:</strong> เปลี่ยน import ใน <code>App.vue</code> กลับเป็น <code>NotReady.vue</code> ระบบยังรันได้ API ยังได้คะแนน แล้วใช้ Thunder Client สาธิต API แทน</li>
+</ul></section><div class="pager"></div></article>
+<article class="page" id="p6"><h1>ขั้น 4 — ผู้รับประเมินตนเอง และอัปโหลดหลักฐาน</h1><p><strong>ใครทำ:</strong> คนที่ 1 ทำ 4A · คนที่ 2 ทำ 4B · คนที่ 3 เขียนเอกสาร API (ส่วน 4)<br/>
+<strong>เวลา:</strong> 45 นาที<br/>
+<strong>คะแนนที่ได้เมื่อผ่าน:</strong> 5.1.5 แนบหลักฐาน PDF/รูป/URL · 5.2.3 เพิ่มข้อมูลแต่ละตัวชี้วัด · 5.2.4 กรอกคะแนนตนเอง · 5.2.5 บันทึกการประเมินตนเอง · 5.2.6 ดูความคืบหน้า · 6.3 API อัปโหลดไฟล์ (รวม 6 คะแนน)</p>
+<hr/>
+<section class="part who-1" data-who="1"><h2>4A — คนที่ 1<span class="tag t1">คนที่ 1</span></h2>
+<h3><code>backend/uploads.js</code> — รับไฟล์ ตรวจชนิดจริง และบันทึก</h3>
+<p>📄 <strong><code>backend/uploads.js</code></strong></p>
+<div class="codebox"><pre><code class="language-js">const multer = require('multer');
+const fs = require('node:fs');
+const path = require('node:path');
+const { randomUUID } = require('node:crypto');
+const { check } = require('./helpers');
+const folder = process.env.UPLOAD_DIR || path.join(__dirname, 'uploads');
+fs.mkdirSync(folder, { recursive: true });
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 5 * 1024 * 1024, files: 1 },
+}).single('file');
+function saveFile(file, signature = false) {
+  check(file, 'เลือกไฟล์ก่อน');
+  const b = file.buffer;
+  let extension = '';
+  if (b.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]))) extension = '.png';
+  if (b[0] === 255 &amp;&amp; b[1] === 216 &amp;&amp; b[2] === 255) extension = '.jpg';
+  if (b.subarray(0, 5).toString() === '%PDF-' &amp;&amp; !signature) extension = '.pdf';
+  check(extension, signature ? 'ลายเซ็นต้องเป็น PNG หรือ JPEG' : 'รับเฉพาะ PDF, PNG หรือ JPEG');
+  if (signature) check(file.size &lt;= 512 * 1024, 'ลายเซ็นต้องไม่เกิน 512 KB');
+  const name = randomUUID() + extension;
+  fs.writeFileSync(path.join(folder, name), b);
+  return name;
+}
+module.exports = { upload, saveFile, folder };
+</code></pre></div>
+<ul>
+<li><code>multer.memoryStorage()</code> รับไฟล์ไว้ในหน่วยความจำก่อน จำกัด 5 MB</li>
+<li>ตรวจ <strong>ไบต์แรกของไฟล์</strong> (magic number) ไม่เชื่อนามสกุล: PNG เริ่มด้วย <code>89 50 4E 47</code>, JPEG <code>FF D8 FF</code>, PDF <code>%PDF-</code> กันคนเปลี่ยนนามสกุลไฟล์อันตราย</li>
+<li>ตั้งชื่อไฟล์ใหม่ด้วย <code>randomUUID()</code> กันชื่อซ้ำและกันชื่อไฟล์แปลก ๆ</li>
+<li>ไฟล์ไปอยู่ที่ <code>backend/uploads/</code> ในเครื่องเรา (เพราะ mount โฟลเดอร์ไว้)</li>
+</ul>
+<h3><code>backend/routes/self.js</code> — API ของผู้รับการประเมิน</h3>
+<p>📄 <strong><code>backend/routes/self.js</code></strong></p>
+<div class="codebox"><pre><code class="language-js">const router = require('express').Router();
+const { query } = require('../db');
+const { role } = require('../auth');
+const {
+  check,
+  text,
+  ok,
+  route,
+  getPeriod,
+  getParticipant,
+  items,
+  open,
+  scoreValid,
+  complete,
+} = require('../helpers');
+const { upload, saveFile } = require('../uploads');
+async function own(id, user, editing = false) {
+  const person = await getParticipant(id);
+  check(person.user_id === user.id, 'ไม่ใช่งานของคุณ', 403);
+  if (editing) {
+    open(await getPeriod(person.period_id));
+    check(!person.submitted, 'ส่งแล้ว แก้ไม่ได้');
+  }
+  return person;
+}
+// GET /api/my-periods — รอบของผู้รับที่ login อยู่ (evaluatee)
+router.get(
+  '/my-periods',
+  role('evaluatee'),
+  route(async (req, res) =&gt; {
+    ok(
+      res,
+      await query(
+        'SELECT p.id,p.submitted,r.name,r.status,r.start_date,r.end_date,r.published FROM participants p JOIN periods r ON r.id=p.period_id WHERE p.user_id=? ORDER BY p.id DESC',
+        [req.user.id],
+      ),
+    );
+  }),
+);
+// GET /api/self/:id — ข้อมูลประเมินตนเอง path: id = participant id (evaluatee)
+router.get(
+  '/self/:id',
+  role('evaluatee'),
+  route(async (req, res) =&gt; {
+    const person = await own(req.params.id, req.user);
+    ok(res, {
+      person,
+      period: await getPeriod(person.period_id),
+      indicators: await items(person.period_id),
+      scores: await query('SELECT * FROM self_scores WHERE participant_id=?', [person.id]),
+    });
+  }),
+);
+// PUT /api/self/:id/scores/:indicatorId — บันทึกคะแนนตนเอง path: id, indicatorId body: score, description, evidence_url (evaluatee)
+router.put(
+  '/self/:id/scores/:indicatorId',
+  role('evaluatee'),
+  route(async (req, res) =&gt; {
+    const person = await own(req.params.id, req.user, true);
+    const item = (await items(person.period_id)).find(
+      (i) =&gt; i.id === Number(req.params.indicatorId),
+    );
+    check(item, 'ตัวชี้วัดไม่อยู่ในรอบ', 404);
+    const b = req.body;
+    check(scoreValid(item, b.score), 'เลือกคะแนนให้ถูกชนิด');
+    const url = text(b.evidence_url, 1000, false);
+    if (url) {
+      let parsed;
+      try {
+        parsed = new URL(url);
+      } catch {}
+      check(
+        parsed &amp;&amp; ['http:', 'https:'].includes(parsed.protocol),
+        'URL ต้องขึ้นต้น http:// หรือ https://',
+      );
+    }
+    await query(
+      'INSERT INTO self_scores(participant_id,indicator_id,score,description,evidence_url) VALUES(?,?,?,?,?) ON DUPLICATE KEY UPDATE score=VALUES(score),description=VALUES(description),evidence_url=VALUES(evidence_url)',
+      [
+        person.id,
+        item.id,
+        b.score,
+        text(b.description, 3000, false),
+        item.evidence_type === 'url' ? url : '',
+      ],
+    );
+    ok(res);
+  }),
+);
+// POST /api/self/:id/files/:indicatorId — อัปโหลดไฟล์หลักฐาน form-data: file (evaluatee)
+router.post(
+  '/self/:id/files/:indicatorId',
+  role('evaluatee'),
+  upload,
+  route(async (req, res) =&gt; {
+    const person = await own(req.params.id, req.user, true);
+    const item = (await items(person.period_id)).find(
+      (i) =&gt; i.id === Number(req.params.indicatorId),
+    );
+    check(item &amp;&amp; item.evidence_type === 'file', 'ข้อนี้ไม่รับไฟล์');
+    const rows = await query(
+      'SELECT id FROM self_scores WHERE participant_id=? AND indicator_id=?',
+      [person.id, item.id],
+    );
+    check(rows.length, 'บันทึกคะแนนข้อนี้ก่อนแนบไฟล์');
+    await query('UPDATE self_scores SET evidence_file=? WHERE id=?', [
+      saveFile(req.file),
+      rows[0].id,
+    ]);
+    ok(res);
+  }),
+);
+// POST /api/self/:id/submit — ส่งการประเมินตนเอง path: id (evaluatee)
+router.post(
+  '/self/:id/submit',
+  role('evaluatee'),
+  route(async (req, res) =&gt; {
+    const person = await own(req.params.id, req.user, true);
+    const list = await items(person.period_id),
+      rows = await query('SELECT * FROM self_scores WHERE participant_id=?', [person.id]);
+    check(
+      list.length &amp;&amp;
+        list.every((i) =&gt;
+          complete(
+            i,
+            rows.find((s) =&gt; s.indicator_id === i.id),
+          ),
+        ),
+      'คะแนน รายละเอียด หรือหลักฐานยังไม่ครบ',
+    );
+    await query('UPDATE participants SET submitted=1 WHERE id=?', [person.id]);
+    ok(res);
+  }),
+);
+module.exports = router;
+</code></pre></div>
+<ul>
+<li><code>own()</code> ตรวจว่าเป็นงานของคนที่ login อยู่จริง และถ้าจะแก้ ต้องอยู่ในช่วงวันที่รอบเปิด และยังไม่ส่ง</li>
+<li><code>ON DUPLICATE KEY UPDATE</code> บันทึกซ้ำข้อเดิม = แก้ไข ไม่เพิ่มแถวใหม่</li>
+<li><code>POST /self/:id/files/:indicatorId</code> ใช้ <code>upload</code> (multer) รับช่อง <code>file</code> แบบ form-data (เกณฑ์ 6.3)</li>
+</ul>
+<h3><code>backend/routes/files.js</code> — เปิดไฟล์หลักฐาน/ลายเซ็นแบบตรวจสิทธิ์</h3>
+<p>📄 <strong><code>backend/routes/files.js</code></strong></p>
+<div class="codebox"><pre><code class="language-js">const router = require('express').Router();
+const path = require('node:path');
+const { query } = require('../db');
+const { check, route } = require('../helpers');
+const { folder } = require('../uploads');
+// เปิดไฟล์ผ่าน API ที่ตรวจสิทธิ์ ไม่เปิด uploads เป็น public
+// GET /api/files/:id — เปิดไฟล์หลักฐาน (ตรวจสิทธิ์ก่อน) path: id = self_scores id
+router.get(
+  '/files/:id',
+  route(async (req, res) =&gt; {
+    const rows = await query(
+      'SELECT s.*,p.user_id FROM self_scores s JOIN participants p ON p.id=s.participant_id WHERE s.id=?',
+      [req.params.id],
+    );
+    check(rows.length, 'ไม่พบหลักฐาน', 404);
+    const row = rows[0],
+      assigned = await query(
+        'SELECT id FROM assignments WHERE participant_id=? AND evaluator_id=?',
+        [row.participant_id, req.user.id],
+      );
+    check(
+      req.user.role === 'admin' || row.user_id === req.user.id || assigned.length,
+      'ไม่มีสิทธิ์เปิดไฟล์',
+      403,
+    );
+    check(row.evidence_file, 'ยังไม่มีไฟล์', 404);
+    res.sendFile(path.join(folder, row.evidence_file));
+  }),
+);
+// GET /api/signatures/:id — เปิดภาพลายเซ็น path: id = assignment id
+router.get(
+  '/signatures/:id',
+  route(async (req, res) =&gt; {
+    const rows = await query(
+      'SELECT a.*,p.user_id,r.published FROM assignments a JOIN participants p ON p.id=a.participant_id JOIN periods r ON r.id=p.period_id WHERE a.id=?',
+      [req.params.id],
+    );
+    check(rows.length, 'ไม่พบงาน', 404);
+    const a = rows[0];
+    check(
+      req.user.role === 'admin' ||
+        a.evaluator_id === req.user.id ||
+        (a.user_id === req.user.id &amp;&amp; a.published),
+      'ไม่มีสิทธิ์',
+      403,
+    );
+    check(a.signature, 'ยังไม่มีลายเซ็น', 404);
+    res.sendFile(path.join(folder, a.signature));
+  }),
+);
+module.exports = router;
+</code></pre></div>
+<p>ไม่เปิดโฟลเดอร์ <code>uploads</code> ให้ใครก็โหลดได้ ต้องผ่าน API ที่ตรวจว่าเป็นเจ้าของ กรรมการที่ได้รับมอบหมาย หรือ admin เท่านั้น</p>
+<p><strong>เปิดใช้ใน <code>server.js</code>:</strong> ลบ <code>//</code> หน้า 2 บรรทัด <code>// ขั้น 4</code></p>
+<div class="codebox"><pre><code class="language-js">app.use('/api', require('./routes/self')); // ขั้น 4
+app.use('/api', require('./routes/files')); // ขั้น 4
+</code></pre></div>
+<div class="zone"><h3>✅ จุดเช็ก 4A (Thunder Client)</h3>
+<p>login <code>emp001</code> แล้วเปลี่ยนรหัสผ่านก่อน (<code>PUT /api/me/password</code>) ใช้ token ใหม่ที่ได้</p>
+<table>
+<thead>
+<tr><th class="cb">ผ่าน</th>
+<th>คำขอ</th>
+<th>ผล</th>
+</tr>
+</thead>
+<tbody>
+<tr><td class="cb"><input data-key="p6:c0" type="checkbox"/></td>
+<td><code>GET /api/my-periods</code></td>
+<td>200 เห็นรอบที่ admin เพิ่มไว้ จด <code>id</code> (participant id)</td>
+</tr>
+<tr><td class="cb"><input data-key="p6:c1" type="checkbox"/></td>
+<td><code>GET /api/self/{id}</code></td>
+<td>200 มี <code>indicators</code> 2 ข้อ</td>
+</tr>
+<tr><td class="cb"><input data-key="p6:c2" type="checkbox"/></td>
+<td><code>PUT /api/self/{id}/scores/{indicatorId}</code> body <code>{"score":5,"description":"x"}</code></td>
+<td>400 <code>เลือกคะแนนให้ถูกชนิด</code></td>
+</tr>
+<tr><td class="cb"><input data-key="p6:c3" type="checkbox"/></td>
+<td><code>POST /api/self/{id}/files/{indicatorId}</code> Body → Form → Files ช่อง <code>file</code> เลือกไฟล์ .txt</td>
+<td>400 <code>รับเฉพาะ PDF, PNG หรือ JPEG</code></td>
+</tr>
+</tbody>
+</table>
+<p>💾 <code>git add -A</code> แล้ว <code>git commit -m "ขั้น 4A ผ่าน: API ประเมินตนเอง อัปโหลด"</code></p>
+</div><hr/>
+</section><section class="part check"><h2>✅ จุดเช็กขั้น 4 (หน้าเว็บ ด้วย emp001)</h2>
+<ol>
+<li class="cbli"><input data-key="p6:c4" type="checkbox"/>login <code>emp001</code> / <code>Emp1234!</code> → เปลี่ยนรหัสเป็น <code>Emp1234!x</code></li>
+<li class="cbli"><input data-key="p6:c5" type="checkbox"/>เมนู <strong>ประเมินตนเอง</strong> → กดปุ่มชื่อรอบ</li>
+<li class="cbli"><input data-key="p6:c6" type="checkbox"/>ข้อ "แผนการสอน": เลือกคะแนน 3 พิมพ์รายละเอียด → <strong>บันทึกข้อนี้</strong> → เลือกไฟล์ PDF → <strong>แนบไฟล์</strong> → ปุ่ม "เปิดไฟล์หลักฐาน" ขึ้น กดแล้วเปิดไฟล์ได้</li>
+<li class="cbli"><input data-key="p6:c7" type="checkbox"/>ข้อ "มีเว็บไซต์รายวิชา": เลือก "มี (1)" พิมพ์รายละเอียด ใส่ URL <code>abc</code> → บันทึก → กล่องแดง "URL ต้องขึ้นต้น http:// หรือ https://" (validate ทำงาน) → แก้เป็น <code>https://example.com</code> → บันทึกอีกครั้ง</li>
+<li class="cbli"><input data-key="p6:c8" type="checkbox"/>ความคืบหน้าขึ้น <strong>2 / 2 ข้อ</strong> → ปุ่ม <strong>ส่งการประเมินตนเอง</strong> กดได้ → ยืนยัน → "ส่งแล้ว" ช่องทั้งหมดถูกล็อก</li>
+</ol>
+</section><section class="part"><h2>💾 บันทึก</h2>
+<div class="codebox"><pre><code class="language-powershell">git add -A
+git commit -m "ขั้น 4 ผ่าน: ผู้รับประเมินตนเอง + แนบไฟล์"
+</code></pre></div>
+</section><section class="part"><h2>❌ ถ้าไม่ผ่าน</h2>
+<ul>
+<li>"รอบยังไม่เปิด หรืออยู่นอกวันประเมิน" → admin ยังไม่กดเปิดรอบ หรือวันเริ่มเป็นวันพรุ่งนี้ ให้สร้างรอบใหม่ที่เริ่มวันนี้</li>
+<li>"บันทึกคะแนนข้อนี้ก่อนแนบไฟล์" → กด "บันทึกข้อนี้" ก่อนกดแนบไฟล์</li>
+<li>"ไฟล์เกิน 5 MB" → ใช้ไฟล์เล็กลง</li>
+<li>เมนูประเมินตนเองว่าง → admin ยังไม่เพิ่ม emp001 เข้ารอบ</li>
+</ul></section><div class="pager"></div></article>
+<article class="page" id="p7"><h1>ขั้น 5 — กรรมการให้คะแนน ความเห็น ลายเซ็น และส่งผล</h1><p><strong>ใครทำ:</strong> คนที่ 1 ทำ 5A · คนที่ 2 ทำ 5B · คนที่ 3 ทดสอบย้อนหลังขั้น 2–4 และจดผล<br/>
+<strong>เวลา:</strong> 40 นาที<br/>
+<strong>คะแนนที่ได้เมื่อผ่าน:</strong> 5.3.1 แสดงผู้รับที่ต้องประเมิน · 5.3.2 แสดงหัวข้อ ตัวชี้วัด หลักฐาน · 5.3.3 แสดงคะแนนที่ผู้รับประเมินตนเอง · 5.3.4 ให้คะแนน · 5.3.5 ความเห็นภาพรวม · 5.3.6 ตารางผลแต่ละตัวชี้วัด · 5.3.7 ลงนามแนบลายเซ็น · 5.3.8 ยืนยันส่งผล (รวม 8 คะแนน)</p>
+<hr/>
+<section class="part who-1" data-who="1"><h2>5A — คนที่ 1: <code>backend/routes/evaluate.js</code><span class="tag t1">คนที่ 1</span></h2>
+<p>📄 <strong><code>backend/routes/evaluate.js</code></strong></p>
+<div class="codebox"><pre><code class="language-js">const router = require('express').Router();
+const { query } = require('../db');
+const { role } = require('../auth');
+const {
+  check,
+  text,
+  ok,
+  route,
+  getPeriod,
+  getParticipant,
+  items,
+  open,
+  scoreValid,
+  percentage,
+} = require('../helpers');
+const { upload, saveFile } = require('../uploads');
+async function own(id, user, editing = false) {
+  const rows = await query('SELECT * FROM assignments WHERE id=?', [id]);
+  check(rows.length, 'ไม่พบงาน', 404);
+  const a = rows[0];
+  check(a.evaluator_id === user.id, 'ไม่ใช่งานที่มอบหมายให้คุณ', 403);
+  const person = await getParticipant(a.participant_id),
+    period = await getPeriod(person.period_id);
+  if (editing) {
+    open(period);
+    check(person.submitted, 'ผู้รับยังไม่ส่ง');
+    check(!a.submitted, 'กรรมการส่งแล้ว แก้ไม่ได้');
+  }
+  return { assignment: a, person, period };
+}
+// GET /api/my-assignments — งานที่กรรมการได้รับมอบหมาย (evaluator)
+router.get(
+  '/my-assignments',
+  role('evaluator'),
+  route(async (req, res) =&gt; {
+    ok(
+      res,
+      await query(
+        'SELECT a.id,a.submitted,a.committee_role,u.full_name,r.name,p.submitted AS self_submitted FROM assignments a JOIN participants p ON p.id=a.participant_id JOIN users u ON u.id=p.user_id JOIN periods r ON r.id=p.period_id WHERE a.evaluator_id=? ORDER BY a.id DESC',
+        [req.user.id],
+      ),
+    );
+  }),
+);
+// GET /api/evaluate/:id — ข้อมูลสำหรับให้คะแนน path: id = assignment id (evaluator)
+router.get(
+  '/evaluate/:id',
+  role('evaluator'),
+  route(async (req, res) =&gt; {
+    const data = await own(req.params.id, req.user);
+    const indicators = await items(data.person.period_id);
+    const scores = await query('SELECT * FROM scores WHERE assignment_id=?', [data.assignment.id]);
+    ok(res, {
+      ...data,
+      indicators,
+      scores,
+      self_scores: await query('SELECT * FROM self_scores WHERE participant_id=?', [
+        data.person.id,
+      ]),
+      percentage: percentage(indicators, scores),
+    });
+  }),
+);
+// PUT /api/evaluate/:id/scores/:indicatorId — ให้คะแนน path: id, indicatorId body: score (evaluator)
+router.put(
+  '/evaluate/:id/scores/:indicatorId',
+  role('evaluator'),
+  route(async (req, res) =&gt; {
+    const data = await own(req.params.id, req.user, true);
+    const item = (await items(data.person.period_id)).find(
+      (i) =&gt; i.id === Number(req.params.indicatorId),
+    );
+    check(item, 'ตัวชี้วัดไม่อยู่ในรอบ', 404);
+    check(scoreValid(item, req.body.score), 'คะแนนไม่ถูกชนิด');
+    await query(
+      'INSERT INTO scores(assignment_id,indicator_id,score) VALUES(?,?,?) ON DUPLICATE KEY UPDATE score=VALUES(score)',
+      [data.assignment.id, item.id, req.body.score],
+    );
+    ok(res);
+  }),
+);
+// PUT /api/evaluate/:id/comment — บันทึกความเห็น body: comment (evaluator)
+router.put(
+  '/evaluate/:id/comment',
+  role('evaluator'),
+  route(async (req, res) =&gt; {
+    await own(req.params.id, req.user, true);
+    await query('UPDATE assignments SET comment=? WHERE id=?', [
+      text(req.body.comment, 3000),
+      req.params.id,
+    ]);
+    ok(res);
+  }),
+);
+// POST /api/evaluate/:id/signature — อัปโหลดลายเซ็น form-data: file PNG/JPEG (evaluator)
+router.post(
+  '/evaluate/:id/signature',
+  role('evaluator'),
+  upload,
+  route(async (req, res) =&gt; {
+    await own(req.params.id, req.user, true);
+    await query('UPDATE assignments SET signature=? WHERE id=?', [
+      saveFile(req.file, true),
+      req.params.id,
+    ]);
+    ok(res);
+  }),
+);
+// POST /api/evaluate/:id/submit — ยืนยันและส่งผล path: id (evaluator)
+router.post(
+  '/evaluate/:id/submit',
+  role('evaluator'),
+  route(async (req, res) =&gt; {
+    const data = await own(req.params.id, req.user, true),
+      a = data.assignment;
+    const score = percentage(
+      await items(data.person.period_id),
+      await query('SELECT * FROM scores WHERE assignment_id=?', [a.id]),
+    );
+    check(score !== null &amp;&amp; a.comment &amp;&amp; a.signature, 'คะแนน ความเห็น หรือลายเซ็นยังไม่ครบ');
+    await query('UPDATE assignments SET submitted=1 WHERE id=?', [a.id]);
+    ok(res);
+  }),
+);
+module.exports = router;
+</code></pre></div>
+<p><strong>เข้าใจโค้ด</strong></p>
+<ul>
+<li><code>own()</code> ตรวจว่างานนี้มอบหมายให้กรรมการคนที่ login จริง (<code>evaluator_id === user.id</code>) ไม่ใช่ตอบ 403</li>
+<li>จะแก้คะแนนได้ต้อง: รอบเปิดอยู่ ผู้รับส่งแล้ว และกรรมการยังไม่ส่ง</li>
+<li><code>GET /evaluate/:id</code> ส่งทั้งตัวชี้วัด คะแนนกรรมการ คะแนนตนเองของผู้รับ และร้อยละรวม</li>
+<li>ลายเซ็นใช้ <code>saveFile(file, true)</code> รับเฉพาะ PNG/JPEG ไม่เกิน 512 KB</li>
+<li><code>submit</code> ตรวจว่าคะแนนครบทุกข้อ มีความเห็น และมีลายเซ็น ก่อนเปลี่ยน <code>submitted=1</code></li>
+</ul>
+<p><strong>เปิดใช้ใน <code>server.js</code>:</strong></p>
+<div class="codebox"><pre><code class="language-js">app.use('/api', require('./routes/evaluate')); // ขั้น 5
+</code></pre></div>
+<div class="zone"><h3>✅ จุดเช็ก 5A</h3>
+<p>login <code>eval01</code> (เปลี่ยนรหัสก่อน) → <code>GET /api/my-assignments</code> ได้งาน 1 รายการ → <code>GET /api/evaluate/{id}</code> ได้ <code>self_scores</code> ที่ emp001 กรอก</p>
+<p>💾 <code>git add -A</code> แล้ว <code>git commit -m "ขั้น 5A ผ่าน: API กรรมการ"</code></p>
+</div><hr/>
+</section><section class="part check"><h2>✅ จุดเช็กขั้น 5 (หน้าเว็บ ด้วย eval01)</h2>
+<p>เตรียมภาพลายเซ็น: เปิด Paint เซ็นชื่อ บันทึกเป็น <code>sign.png</code></p>
+<ol>
+<li class="cbli"><input data-key="p7:c0" type="checkbox"/>login <code>eval01</code> / <code>Eval1234!</code> → เปลี่ยนรหัสเป็น <code>Eval1234!x</code></li>
+<li class="cbli"><input data-key="p7:c1" type="checkbox"/>เมนู <strong>งานกรรมการ</strong> → กดปุ่ม "ชื่อรอบ / ผู้รับหนึ่ง" (5.3.1)</li>
+<li class="cbli"><input data-key="p7:c2" type="checkbox"/>เห็นหัวข้อ ตัวชี้วัด รายละเอียด และ "คะแนนตนเอง: 3 · ..." (5.3.2, 5.3.3) กด "เปิดหลักฐาน" เปิดไฟล์ได้</li>
+<li class="cbli"><input data-key="p7:c3" type="checkbox"/>ให้คะแนนข้อ 1 = 4 → บันทึกคะแนนข้อนี้ · ข้อ 2 = มี (1) → บันทึก (5.3.4)</li>
+<li class="cbli"><input data-key="p7:c4" type="checkbox"/>ตาราง "ตรวจทานคะแนนที่บันทึก" แสดงคะแนนครบ ร้อยละขึ้น 100% (5.3.6)</li>
+<li class="cbli"><input data-key="p7:c5" type="checkbox"/>พิมพ์ความเห็นภาพรวม → บันทึกความเห็น (5.3.5)</li>
+<li class="cbli"><input data-key="p7:c6" type="checkbox"/>เลือก <code>sign.png</code> → บันทึกลายเซ็น → ภาพลายเซ็นขึ้น (5.3.7)</li>
+<li class="cbli"><input data-key="p7:c7" type="checkbox"/>กด <strong>ยืนยันและส่งผล</strong> → ยืนยัน → ช่องทั้งหมดถูกล็อก (5.3.8)</li>
+<li class="cbli"><input data-key="p7:c8" type="checkbox"/>ทำซ้ำด้วย <code>eval02</code> (กรรมการร่วม) ให้ส่งครบทั้งสองคน จะใช้ในขั้น 6</li>
+</ol>
+</section><section class="part"><h2>💾 บันทึก</h2>
+<div class="codebox"><pre><code class="language-powershell">git add -A
+git commit -m "ขั้น 5 ผ่าน: กรรมการให้คะแนน ลายเซ็น ส่งผล"
+</code></pre></div>
+</section><section class="part"><h2>❌ ถ้าไม่ผ่าน</h2>
+<ul>
+<li>"ขณะนี้อ่านได้อย่างเดียว" → ผู้รับยังไม่กดส่ง หรือกรรมการส่งไปแล้ว</li>
+<li>"ลายเซ็นต้องเป็น PNG หรือ JPEG" → ไฟล์ไม่ใช่รูปจริง บันทึกจาก Paint ใหม่</li>
+<li>งานกรรมการว่าง → admin ยังไม่มอบหมายกรรมการคนนี้</li>
+</ul></section><div class="pager"></div></article>
+<article class="page" id="p8"><h1>ขั้น 6 — รายงาน ติดตามสถานะ เผยแพร่ผล และ Export PDF</h1><p><strong>ใครทำ:</strong> คนที่ 1 ทำ 6A · คนที่ 2 ทำ 6B · คนที่ 3 ทดสอบขั้น 5 และจับภาพหน้าจอ<br/>
+<strong>เวลา:</strong> 30 นาที<br/>
+<strong>คะแนนที่ได้เมื่อผ่าน:</strong> 5.1.10 สรุปผลรายกรรมการ · 5.1.11 ติดตามสถานะกรรมการ · 5.1.12 ติดตามสถานะผู้รับ · 5.1.13 รายงานรายบุคคล · 5.2.7 Export PDF · 5.2.8 ผู้รับดูความเห็นกรรมการ (รวม 6 คะแนน) และเป็นฐานของโจทย์พิเศษ 8.1, 8.5</p>
+<hr/>
+<section class="part who-1" data-who="1"><h2>6A — คนที่ 1: <code>backend/routes/reports.js</code><span class="tag t1">คนที่ 1</span></h2>
+<p>📄 <strong><code>backend/routes/reports.js</code></strong></p>
+<div class="codebox"><pre><code class="language-js">const router = require('express').Router();
+const { query } = require('../db');
+const { role } = require('../auth');
+const {
+  check,
+  ok,
+  route,
+  getPeriod,
+  getParticipant,
+  items,
+  percentage,
+  complete,
+} = require('../helpers');
+async function result(id) {
+  const person = await getParticipant(id),
+    period = await getPeriod(person.period_id),
+    indicators = await items(period.id);
+  const self = await query('SELECT * FROM self_scores WHERE participant_id=?', [id]);
+  const committees = await query(
+    'SELECT a.*,u.full_name FROM assignments a JOIN users u ON u.id=a.evaluator_id WHERE a.participant_id=? ORDER BY a.id',
+    [id],
+  );
+  for (const c of committees) {
+    c.scores = await query('SELECT * FROM scores WHERE assignment_id=?', [c.id]);
+    c.percentage = percentage(indicators, c.scores);
+  }
+  const done =
+    !!person.submitted &amp;&amp;
+    committees.length &gt; 0 &amp;&amp;
+    committees.every((c) =&gt; c.submitted &amp;&amp; c.percentage !== null);
+  const total = done
+    ? Math.round((committees.reduce((sum, c) =&gt; sum + c.percentage, 0) / committees.length) * 100) /
+      100
+    : null;
+  return {
+    person,
+    period,
+    indicators,
+    self_scores: self,
+    self_complete: indicators.filter((i) =&gt;
+      complete(
+        i,
+        self.find((s) =&gt; s.indicator_id === i.id),
+      ),
+    ).length,
+    committees,
+    total,
+  };
+}
+// GET /api/my-results — ผลการประเมินของฉัน (evaluatee)
+router.get(
+  '/my-results',
+  role('evaluatee'),
+  route(async (req, res) =&gt; {
+    const people = await query(
+      'SELECT p.id, r.name, r.year, r.published FROM participants p JOIN periods r ON r.id=p.period_id WHERE p.user_id=? ORDER BY r.id DESC',
+      [req.user.id],
+    );
+    const results = [];
+    for (const p of people)
+      results.push({ ...p, total: p.published ? (await result(p.id)).total : null });
+    ok(res, results);
+  }),
+);
+// GET /api/reports/:id — รายงานภาพรวมรอบ + ค่าเฉลี่ย path: id = period id (admin)
+router.get(
+  '/reports/:id',
+  role('admin'),
+  route(async (req, res) =&gt; {
+    const period = await getPeriod(req.params.id),
+      people = await query('SELECT id FROM participants WHERE period_id=?', [period.id]),
+      results = [];
+    for (const p of people) results.push(await result(p.id));
+    const ready = results.filter((r) =&gt; r.total !== null);
+    ok(res, {
+      period,
+      results,
+      average: ready.length
+        ? Math.round((ready.reduce((sum, r) =&gt; sum + r.total, 0) / ready.length) * 100) / 100
+        : null,
+    });
+  }),
+);
+// GET /api/results/:id — ผลรายบุคคล path: id = participant id
+router.get(
+  '/results/:id',
+  route(async (req, res) =&gt; {
+    const person = await getParticipant(req.params.id),
+      period = await getPeriod(person.period_id);
+    check(
+      req.user.role === 'admin' || (req.user.id === person.user_id &amp;&amp; period.published),
+      'ผลยังไม่เผยแพร่ หรือไม่มีสิทธิ์',
+      403,
+    );
+    ok(res, await result(person.id));
+  }),
+);
+// POST /api/periods/:id/publish — เผยแพร่ผล path: id (admin)
+router.post(
+  '/periods/:id/publish',
+  role('admin'),
+  route(async (req, res) =&gt; {
+    const period = await getPeriod(req.params.id);
+    check(period.status !== 'draft', 'รอบยังไม่เปิด');
+    const people = await query('SELECT id FROM participants WHERE period_id=?', [period.id]);
+    check(people.length, 'ไม่มีผู้รับ');
+    for (const person of people)
+      check((await result(person.id)).total !== null, 'ต้องส่งครบทุกคนและทุกกรรมการก่อนเผยแพร่');
+    await query('UPDATE periods SET published=1 WHERE id=?', [period.id]);
+    ok(res);
+  }),
+);
+module.exports = router;
+</code></pre></div>
+<p><strong>เข้าใจโค้ด</strong></p>
+<ul>
+<li><code>result(id)</code> รวบรวมผลของผู้รับ 1 คน: คะแนนตนเอง จำนวนข้อที่ครบ (<code>self_complete</code>) กรรมการแต่ละคนพร้อมร้อยละ</li>
+<li>ผลรวม (<code>total</code>) = ค่าเฉลี่ยร้อยละของกรรมการทุกคน คิดเมื่อผู้รับและกรรมการทุกคนส่งแล้วเท่านั้น</li>
+<li><code>GET /reports/:id</code> ภาพรวมทั้งรอบ + <code>average</code> ค่าเฉลี่ยของผู้ที่ผลครบ (สถิติภาพรวม)</li>
+<li><code>GET /results/:id</code> ผู้รับดูได้เฉพาะของตัวเอง และเฉพาะเมื่อเผยแพร่แล้ว</li>
+<li><code>POST /periods/:id/publish</code> เผยแพร่ได้เมื่อทุกคนส่งครบ</li>
+</ul>
+<p><strong>เปิดใช้ใน <code>server.js</code>:</strong></p>
+<div class="codebox"><pre><code class="language-js">app.use('/api', require('./routes/reports')); // ขั้น 6
+</code></pre></div>
+<p>ตอนนี้ <code>server.js</code> ต้องไม่มีบรรทัดไหนขึ้นต้นด้วย <code>// app.use</code> แล้ว</p>
+<p>💾 <code>git add -A</code> แล้ว <code>git commit -m "ขั้น 6A ผ่าน: API รายงาน"</code></p>
+<hr/>
+</section><section class="part check"><h2>✅ จุดเช็กขั้น 6</h2>
+<p>ด้วย <strong>admin</strong></p>
+<ol>
+<li class="cbli"><input data-key="p8:c0" type="checkbox"/>รอบประเมิน → ปุ่ม <strong>รายงาน</strong> ของรอบ → เห็นผู้รับทั้งหมด จำนวนผลครบ และค่าเฉลี่ย (5.1.12, สถิติ)</li>
+<li class="cbli"><input data-key="p8:c1" type="checkbox"/>ตารางกรรมการของแต่ละคน: ความคืบหน้า x/y ส่งแล้ว/ยังไม่ส่ง คะแนน (5.1.10, 5.1.11)</li>
+<li class="cbli"><input data-key="p8:c2" type="checkbox"/>กด <strong>ดูรายบุคคล</strong> → ตารางคะแนนทุกตัวชี้วัดของกรรมการแต่ละคน ความเห็น ลายเซ็น (5.1.13)</li>
+<li class="cbli"><input data-key="p8:c3" type="checkbox"/>กด <strong>พิมพ์ / บันทึก PDF</strong> → ช่องเครื่องพิมพ์เลือก "Save as PDF" → บันทึก → ได้ไฟล์ PDF ภาษาไทยอ่านได้ ไม่มีเมนูและปุ่มติดมา</li>
+<li class="cbli"><input data-key="p8:c4" type="checkbox"/>กลับไปหน้าจัดการรอบ → <strong>เผยแพร่ผล</strong> → ขึ้น "เผยแพร่แล้ว"</li>
+</ol>
+<p>ด้วย <strong>emp001</strong></p>
+<ol start="6">
+<li class="cbli"><input data-key="p8:c5" type="checkbox"/>เมนู <strong>ผลการประเมินของฉัน</strong> → เห็นร้อยละรวม → กด "ดูคะแนนกรรมการ / พิมพ์ PDF" → เห็นความเห็นและลายเซ็นกรรมการ (5.2.8) → กดพิมพ์ เลือก Save as PDF ได้ไฟล์ (5.2.7)</li>
+</ol>
+</section><section class="part"><h2>💾 บันทึก</h2>
+<div class="codebox"><pre><code class="language-powershell">git add -A
+git commit -m "ขั้น 6 ผ่าน: รายงาน + PDF ระบบครบทุกหน้า"
+</code></pre></div>
+<p>🎉 ถึงตรงนี้ระบบทำงานครบตามโจทย์ส่วน 5 แล้ว</p>
+</section><section class="part"><h2>❌ ถ้าไม่ผ่าน</h2>
+<ul>
+<li>เผยแพร่ไม่ได้ "ต้องส่งครบทุกคนและทุกกรรมการก่อนเผยแพร่" → กรรมการคนที่สองยังไม่ส่ง</li>
+<li>ผู้รับขึ้น "รอประกาศผล" → admin ยังไม่กดเผยแพร่</li>
+<li>PDF มีเมนูหรือปุ่มติดมา → ตรวจว่า <code>style.css</code> มีส่วน <code>@media print</code> ครบ และปุ่มอยู่ใน <code>div class="actions no-print"</code></li>
+<li>ลายเซ็นไม่ขึ้นในรายงาน → ไฟล์ใน <code>backend/uploads</code> ถูกลบ ให้กรรมการเซ็นใหม่ในรอบใหม่</li>
+</ul></section><div class="pager"></div></article>
+<article class="page" id="p9"><h1>ขั้น 7 — การทดสอบโปรแกรม (Finish detail design process)</h1><p><strong>ใครทำ:</strong> คนที่ 3 นำ · คนที่ 1 พิมพ์ไฟล์ทดสอบและรัน · คนที่ 2 ตรวจ DevTools และมือถือ<br/>
+<strong>เวลา:</strong> 30 นาที<br/>
+<strong>คะแนนที่ได้เมื่อผ่าน:</strong> 7.1–7.8 (10 คะแนน)</p>
+<blockquote>
+<p>ข้อทดสอบหลายข้อทำได้ตั้งแต่ขั้น 2 แล้ว คนที่ 3 ควรทยอยทดสอบและจับภาพไว้ตั้งแต่เนิ่น ๆ ถ้าขั้นท้ายพัง ภาพเหล่านี้ยังเป็นหลักฐานได้</p>
+</blockquote>
+<section class="part who-1" data-who="1"><h2>7.1 Unit Test ฟังก์ชันคำนวณคะแนน (เกณฑ์ 7.5) — คนที่ 1<span class="tag t1">คนที่ 1</span></h2>
+<p>📄 <strong><code>backend/tests/score.test.js</code></strong></p>
+<div class="codebox"><pre><code class="language-js">const test = require('node:test');
+const assert = require('node:assert/strict');
+const { percentage, scoreValid } = require('../helpers');
+const items = [
+  { id: 1, score_type: 'scale4', weight: 60 },
+  { id: 2, score_type: 'boolean', weight: 20 },
+  { id: 3, score_type: 'scale4', weight: 20 },
+];
+test('ถ่วงน้ำหนักได้ 85 และ 75 โดย 0 คือคะแนนจริง', () =&gt; {
+  assert.equal(
+    percentage(items, [
+      { indicator_id: 1, score: 4 },
+      { indicator_id: 2, score: 1 },
+      { indicator_id: 3, score: 1 },
+    ]),
+    85,
+  );
+  assert.equal(
+    percentage(items, [
+      { indicator_id: 1, score: 4 },
+      { indicator_id: 2, score: 0 },
+      { indicator_id: 3, score: 3 },
+    ]),
+    75,
+  );
+});
+test('คะแนนไม่ครบต้องยังไม่มีผล', () =&gt; assert.equal(percentage(items, []), null));
+test('ปฏิเสธคะแนนผิดชนิด', () =&gt; {
+  assert.equal(scoreValid(items[0], 0), false);
+  assert.equal(scoreValid(items[1], 4), false);
+});
+</code></pre></div>
+<ul>
+<li>ตัวชี้วัด 3 ข้อ น้ำหนัก 60/20/20 ได้ 4, 1(มี), 1 → (4/4×60 + 1/1×20 + 1/4×20) ÷ 100 = <strong>85%</strong></li>
+<li>คะแนนไม่ครบต้องได้ <code>null</code> (ยังไม่มีผล) และคะแนนผิดชนิดต้องถูกปฏิเสธ</li>
+</ul>
+<p>รัน:</p>
+<div class="codebox"><pre><code class="language-powershell">docker compose exec backend npm test
+</code></pre></div>
+<p>ต้องเห็น <code># pass 3</code> และ <code># fail 0</code></p>
+</section><section class="part who-1" data-who="1"><h2>7.2 ทดสอบ API อัตโนมัติ (เกณฑ์ 7.1, 7.2, 7.3, 7.4, 7.6) — คนที่ 1<span class="tag t1">คนที่ 1</span></h2>
+<p>📄 <strong><code>backend/tests/api.test.js</code></strong></p>
+<div class="codebox"><pre><code class="language-js">// ทดสอบ API จริง (ต้องเปิด docker compose up ไว้ก่อน)
+// รัน: docker compose exec backend npm run test:api
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const BASE = 'http://127.0.0.1:' + (process.env.PORT || 3301) + '/api';
+async function call(path, method = 'GET', body, token) {
+  const headers = { 'Content-Type': 'application/json' };
+  if (token) headers.Authorization = 'Bearer ' + token;
+  const res = await fetch(BASE + path, {
+    method,
+    headers,
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  return { status: res.status, body: await res.json() };
+}
+const username = 'test' + Date.now();
+let token;
+
+test('7.4 Validate: รหัสผ่านสั้นกว่า 8 ตัวต้องถูกปฏิเสธ', async () =&gt; {
+  const r = await call('/register', 'POST', { username, password: '123', full_name: 'ทดสอบ' });
+  assert.equal(r.status, 400);
+  assert.equal(r.body.status, 'error');
+});
+
+test('7.4 Validate: ชื่อว่างต้องถูกปฏิเสธ', async () =&gt; {
+  const r = await call('/register', 'POST', { username, password: 'Test1234!', full_name: '   ' });
+  assert.equal(r.status, 400);
+});
+
+test('7.2 Insert: สมัครผู้ใช้ใหม่ได้ (POST)', async () =&gt; {
+  const r = await call('/register', 'POST', { username, password: 'Test1234!', full_name: 'ทดสอบ' });
+  assert.equal(r.status, 200);
+  assert.equal(r.body.status, 'success');
+});
+
+test('7.1 Login: รหัสผิดต้องได้ 401', async () =&gt; {
+  const r = await call('/login', 'POST', { username, password: 'ผิดแน่นอน' });
+  assert.equal(r.status, 401);
+});
+
+test('7.1 Login: รหัสถูกต้องได้ token', async () =&gt; {
+  const r = await call('/login', 'POST', { username, password: 'Test1234!' });
+  assert.equal(r.status, 200);
+  assert.ok(r.body.data.token);
+  token = r.body.data.token;
+});
+
+test('6.10 ไม่มี token ต้องได้ 401', async () =&gt; {
+  const r = await call('/me');
+  assert.equal(r.status, 401);
+});
+
+test('7.6 GET /me ได้ข้อมูลตัวเอง', async () =&gt; {
+  const r = await call('/me', 'GET', null, token);
+  assert.equal(r.status, 200);
+  assert.equal(r.body.data.username, username);
+});
+
+test('7.3 Update: เปลี่ยนรหัสผ่าน แล้วแก้ข้อมูลส่วนตัว (PUT)', async () =&gt; {
+  const p = await call(
+    '/me/password',
+    'PUT',
+    { current_password: 'Test1234!', new_password: 'New12345!', confirm_password: 'New12345!' },
+    token,
+  );
+  assert.equal(p.status, 200);
+  const u = await call('/me', 'PUT', { full_name: 'ชื่อใหม่', department: 'IT', position: 'ครู' }, token);
+  assert.equal(u.status, 200);
+  const me = await call('/me', 'GET', null, token);
+  assert.equal(me.body.data.full_name, 'ชื่อใหม่');
+  assert.equal(me.body.data.department, 'IT');
+});
+
+test('4.4 เรียก API ที่ไม่มีต้องได้ 404', async () =&gt; {
+  const r = await call('/ไม่มีจริง', 'GET', null, token);
+  assert.equal(r.status, 404);
+});
+</code></pre></div>
+<p>รัน (ระบบต้องเปิดอยู่):</p>
+<div class="codebox"><pre><code class="language-powershell">docker compose exec backend npm run test:api
+</code></pre></div>
+<p>ต้องเห็น <code># pass 9</code> และ <code># fail 0</code> แต่ละบรรทัดขึ้นต้นด้วยเลขข้อเกณฑ์ ใช้ชี้ให้กรรมการดูได้ทันที</p>
+</section><section class="part check"><h2>✅ จุดเช็กขั้น 7</h2>
+<ul>
+<li class="cbli"><input data-key="p9:c0" type="checkbox"/><code>npm test</code> pass 3 · <code>npm run test:api</code> pass 9</li>
+<li class="cbli"><input data-key="p9:c1" type="checkbox"/>ตาราง <code>docs/ผลการทดสอบ.md</code> กรอกครบทุกแถวพร้อมภาพ</li>
+</ul>
+</section><section class="part"><h2>💾 บันทึก</h2>
+<div class="codebox"><pre><code class="language-powershell">git add -A
+git commit -m "ขั้น 7 ผ่าน: ทดสอบครบ"
+</code></pre></div>
+</section><section class="part"><h2>❌ ถ้าไม่ผ่าน</h2>
+<ul>
+<li><code>test:api</code> ขึ้น <code>fetch failed</code> → backend ไม่ได้รันอยู่ ดู <code>docker compose ps</code></li>
+<li>ข้อ 7.3 ล้ม → ฟังก์ชันเปลี่ยนรหัสผ่านใน <code>users.js</code> พิมพ์ผิด ดูข้อความ error ที่ test แสดง</li>
+<li>เทสต์ล้มข้อเดียวแก้ไม่ทัน → อย่าลบเทสต์ ให้จดลงตารางว่า "ไม่ผ่าน" พร้อมสาเหตุ กรรมการให้คะแนนกระบวนการทดสอบด้วย</li>
+</ul></section><div class="pager"></div></article>
+<article class="page" id="p10"><h1>ขั้น 8 — โจทย์พิเศษ (20 คะแนน) และการนำเสนอ (10 คะแนน)</h1><p><strong>ใครทำ:</strong> ทั้งทีม<br/>
+<strong>เวลา:</strong> เวลาที่เหลือ<br/>
+<strong>กติกา:</strong> กรรมการแจ้งโจทย์พิเศษในวันลงทะเบียน ทีมต้องจับคู่โจทย์กับสิ่งที่มีแล้วก่อน แล้วค่อยเพิ่มของใหม่</p>
+<section class="part"><h2>8.1 สิ่งที่ระบบมีอยู่แล้ว ใช้ตอบโจทย์พิเศษได้ทันที</h2>
+<table>
+<thead>
+<tr>
+<th>เกณฑ์</th>
+<th>คะแนน</th>
+<th>มีอยู่แล้วที่ไหน</th>
+<th>วิธีโชว์</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8.1 การแสดงข้อมูล</td>
+<td>2</td>
+<td>รายงานภาพรวม ค่าเฉลี่ย ความคืบหน้า + ตัวอย่างหน้า "สรุปภาพรวม" ด้านล่าง</td>
+<td>เมนูรอบประเมิน → รายงาน</td>
+</tr>
+<tr>
+<td>8.2 ตรวจสอบข้อมูล</td>
+<td>2</td>
+<td><code>check()</code>, <code>text()</code>, <code>dates()</code>, ตรวจ URL, ตรวจชนิดไฟล์จากไบต์จริง, ฟอร์ม <code>required</code>/<code>maxlength</code></td>
+<td>กรอกผิดให้ดูกล่องแดง</td>
+</tr>
+<tr>
+<td>8.3 การ Upload</td>
+<td>5</td>
+<td>หลักฐาน PDF/PNG/JPEG ≤ 5 MB, ลายเซ็น ≤ 512 KB, เปิดไฟล์แบบตรวจสิทธิ์</td>
+<td>ผู้รับแนบไฟล์ / กรรมการเซ็น</td>
+</tr>
+<tr>
+<td>8.4 Backup/Restore</td>
+<td>2</td>
+<td>คำสั่งในข้อ 8.2 ด้านล่าง</td>
+<td>สำรอง → ลบข้อมูล → กู้คืน</td>
+</tr>
+<tr>
+<td>8.5 การแสดง Report</td>
+<td>3</td>
+<td>รายงานรายบุคคล + PDF + พิมพ์</td>
+<td>กดพิมพ์ → บันทึกเป็น PDF</td>
+</tr>
+<tr>
+<td>8.6 อื่น ๆ</td>
+<td>6</td>
+<td>บังคับเปลี่ยนรหัสครั้งแรก, token หมดอายุเมื่อเปลี่ยนรหัส, เผยแพร่ผล, ล็อกเกณฑ์หลังเปิดรอบ, Docker</td>
+<td>อธิบายตอนนำเสนอ</td>
+</tr>
+</tbody>
+</table>
+</section><section class="part who-1" data-who="1"><h2>8.2 Backup / Restore ฐานข้อมูล — คนที่ 1<span class="tag t1">คนที่ 1</span></h2>
+<p>ไฟล์สำรองไปอยู่ที่ <code>C:\bpes\backups\bpes.sql</code> (เพราะ compose ผูก <code>./backups</code> ไว้กับ <code>/backup</code> ใน container ของ db)</p>
+<div class="codebox"><pre><code class="language-powershell"># สำรองข้อมูล
+docker compose exec db sh -c "mysqldump -uroot -proot1234 bpes &gt; /backup/bpes.sql"
+
+# กู้คืนข้อมูล
+docker compose exec db sh -c "mysql -uroot -proot1234 bpes &lt; /backup/bpes.sql"
+</code></pre></div>
+<p>สาธิต: สำรอง → phpMyAdmin ลบแถวใน <code>scores</code> → กู้คืน → แถวกลับมา</p>
+<blockquote>
+<p>ใช้ <code>sh -c "... &gt; /backup/..."</code> ให้ไฟล์ถูกเขียนใน container อย่าใช้ <code>&gt;</code> ของ PowerShell เพราะจะได้ไฟล์ภาษาไทยเพี้ยน</p>
+</blockquote>
+</section><section class="part"><h2>8.3 ตัวอย่างเพิ่มฟังก์ชันใหม่: หน้า "สรุปภาพรวม" (ฝึกสูตร เพิ่ม API 1 ตัว + หน้า 1 หน้า)</h2>
+<p>ทุกฟังก์ชันใหม่ทำ 4 ขั้นเดิมเสมอ: route ใน backend → เปิดใน <code>server.js</code> → หน้า <code>.vue</code> → เพิ่มใน <code>App.vue</code></p>
+<p><strong>คนที่ 1</strong> สร้างไฟล์</p>
+<p>📄 <strong><code>backend/routes/stats.js</code></strong></p>
+<div class="codebox"><pre><code class="language-js">const router = require('express').Router();
+const { query } = require('../db');
+const { role } = require('../auth');
+const { ok, route } = require('../helpers');
+// GET /api/stats — สรุปจำนวนผู้ใช้ตามบทบาท และจำนวนรอบตามสถานะ (admin)
+router.get(
+  '/stats',
+  role('admin'),
+  route(async (req, res) =&gt; {
+    ok(res, {
+      users: await query('SELECT role, COUNT(*) AS total FROM users GROUP BY role'),
+      periods: await query('SELECT status, COUNT(*) AS total FROM periods GROUP BY status'),
+    });
+  }),
+);
+module.exports = router;
+</code></pre></div>
+<p>เพิ่มใน <code>server.js</code> ต่อจากบรรทัดของขั้น 6</p>
+<div class="codebox"><pre><code class="language-js">app.use('/api', require('./routes/stats')); // ขั้น 8
+</code></pre></div>
+<p><strong>คนที่ 2</strong> สร้างไฟล์</p>
+<p>📄 <strong><code>frontend/src/pages/StatsPage.vue</code></strong></p>
+<div class="codebox"><pre><code class="language-vue">&lt;template&gt;
+  &lt;section&gt;
+    &lt;h1&gt;สรุปภาพรวม&lt;/h1&gt;
+    &lt;div v-if="stats" class="grid"&gt;
+      &lt;div class="box"&gt;
+        &lt;h2&gt;ผู้ใช้ตามบทบาท&lt;/h2&gt;
+        &lt;p v-for="u in stats.users" :key="u.role"&gt;
+          {{ names[u.role] }}: &lt;strong&gt;{{ u.total }}&lt;/strong&gt; คน
+        &lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="box"&gt;
+        &lt;h2&gt;รอบประเมินตามสถานะ&lt;/h2&gt;
+        &lt;p v-for="p in stats.periods" :key="p.status"&gt;
+          {{ p.status }}: &lt;strong&gt;{{ p.total }}&lt;/strong&gt; รอบ
+        &lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import { api } from '../api';
+
+export default {
+  data() {
+    return {
+      stats: null,
+      names: { admin: 'ฝ่ายบุคลากร', evaluatee: 'ผู้รับการประเมิน', evaluator: 'กรรมการ' },
+    };
+  },
+  async mounted() {
+    this.stats = await api('/stats');
+  },
+};
+&lt;/script&gt;
+</code></pre></div>
+<p>แก้ <code>App.vue</code> 4 จุด</p>
+<div class="codebox"><pre><code class="language-js">// 1) ส่วน import
+import StatsPage from './pages/StatsPage.vue';
+// 2) ใน components: { ... } เพิ่ม
+    StatsPage,
+</code></pre></div>
+<div class="codebox"><pre><code class="language-html">&lt;!-- 3) ในเมนูของ admin ต่อจากปุ่ม "ผู้ใช้" --&gt;
+&lt;v-btn :variant="page === 'stats' ? 'tonal' : 'text'" @click="go('stats')"&gt;สรุปภาพรวม&lt;/v-btn&gt;
+&lt;!-- 4) ใน &lt;main&gt; ต่อจาก users-page --&gt;
+&lt;stats-page v-if="page === 'stats'"&gt;&lt;/stats-page&gt;
+</code></pre></div>
+<p>✅ เช็ก: login admin → เมนู "สรุปภาพรวม" แสดงจำนวนผู้ใช้แต่ละบทบาทและจำนวนรอบแต่ละสถานะ</p>
+<p>💾 <code>git add -A</code> แล้ว <code>git commit -m "ขั้น 8: สรุปภาพรวม + backup"</code></p>
+</section><section class="part"><h2>8.4 ก่อนหมดเวลา 15 นาที (ทั้งทีม)</h2>
+<ol>
+<li>หยุดเขียนฟีเจอร์ใหม่</li>
+<li>ถ้ามีอะไรพังที่ยังไม่ commit → <code>git restore .</code> กลับไปจุดที่ผ่านล่าสุด</li>
+<li><code>docker compose ps</code> ทุกตัวต้อง <code>Up</code> · เปิดเว็บ login ได้ทุกบทบาท</li>
+<li>สำรองข้อมูล (ข้อ 8.2) เผื่อเครื่องมีปัญหาวันนำเสนอ</li>
+<li>ตรวจว่าโฟลเดอร์ <code>docs</code> มีครบ: ผังงาน 5, ER 1, Layout 5, <code>API.md</code>, <code>ผลการทดสอบ.md</code> + ภาพ</li>
+</ol>
+</section><div class="pager"></div></article>
+<article class="page" id="p11"><h1>แก้ปัญหาที่พบบ่อย</h1><section class="part"><h2>คำสั่ง Docker ที่ต้องจำ</h2>
+<table>
+<thead>
+<tr>
+<th>ต้องการ</th>
+<th>คำสั่ง</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>เปิดทุกอย่าง</td>
+<td><code>docker compose up -d</code></td>
+</tr>
+<tr>
+<td>ดูสถานะ</td>
+<td><code>docker compose ps</code></td>
+</tr>
+<tr>
+<td>ดู log (กด Ctrl+C ออก)</td>
+<td><code>docker compose logs -f backend</code> หรือ <code>frontend</code></td>
+</tr>
+<tr>
+<td>รีสตาร์ตตัวเดียว</td>
+<td><code>docker compose restart backend</code></td>
+</tr>
+<tr>
+<td>ปิดทั้งหมด (ข้อมูลยังอยู่)</td>
+<td><code>docker compose down</code></td>
+</tr>
+<tr>
+<td>ล้างฐานข้อมูลเริ่มใหม่หมด ⚠️</td>
+<td><code>docker compose down -v</code> แล้ว <code>docker compose up -d</code></td>
+</tr>
+<tr>
+<td>เข้าไปพิมพ์คำสั่งใน container</td>
+<td><code>docker compose exec backend sh</code></td>
+</tr>
+<tr>
+<td>เข้า MySQL ด้วยคำสั่ง</td>
+<td><code>docker compose exec db mysql -uroot -proot1234 bpes</code></td>
+</tr>
+</tbody>
+</table>
+</section><section class="part"><h2>อาการ → สาเหตุ → วิธีแก้</h2>
+<table>
+<thead>
+<tr>
+<th>อาการ</th>
+<th>สาเหตุ</th>
+<th>แก้</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>หน้าเว็บกล่องแดง "เชื่อมต่อ API ไม่ได้"</td>
+<td>backend ล่ม</td>
+<td><code>docker compose logs backend</code> ดูบรรทัดสุดท้าย</td>
+</tr>
+<tr>
+<td>log backend <code>Cannot find module './routes/xxx'</code></td>
+<td>ลบ <code>//</code> ใน <code>server.js</code> ก่อนสร้างไฟล์ หรือพิมพ์ชื่อไฟล์ผิด</td>
+<td>ใส่ <code>//</code> กลับ หรือแก้ชื่อไฟล์</td>
+</tr>
+<tr>
+<td>log backend <code>SyntaxError ... server.js:12</code></td>
+<td>พิมพ์โค้ดผิดที่บรรทัดนั้น</td>
+<td>เปิดไฟล์ไปบรรทัดที่บอก ตรวจวงเล็บ <code>( ) { }</code> และ <code>,</code></td>
+</tr>
+<tr>
+<td>log backend <code>ER_NO_SUCH_TABLE</code></td>
+<td>ตารางยังไม่ถูกสร้าง</td>
+<td><code>docker compose restart backend</code> (seed สร้างให้)</td>
+</tr>
+<tr>
+<td>log backend <code>ER_BAD_FIELD_ERROR</code></td>
+<td>ชื่อคอลัมน์ใน SQL ไม่ตรง <code>schema.sql</code></td>
+<td>แก้ชื่อให้ตรง ถ้าแก้ <code>schema.sql</code> เพิ่มคอลัมน์ ต้อง <code>docker compose down -v</code></td>
+</tr>
+<tr>
+<td>หน้าเว็บขาว</td>
+<td>error ใน <code>.vue</code></td>
+<td>F12 → Console ดูชื่อไฟล์และบรรทัด</td>
+</tr>
+<tr>
+<td><code>[plugin:vite:vue] ... Element is missing end tag</code></td>
+<td>แท็กใน <code>&lt;template&gt;</code> ปิดไม่ครบ</td>
+<td>นับ <code>&lt;div&gt;</code> กับ <code>&lt;/div&gt;</code> ให้เท่ากัน</td>
+</tr>
+<tr>
+<td><code>Failed to resolve import "./pages/XxxPage.vue"</code></td>
+<td>ยังไม่สร้างไฟล์ หรือชื่อตัวพิมพ์เล็กใหญ่ไม่ตรง</td>
+<td>ชื่อไฟล์ต้องตรงทุกตัวอักษร หรือกลับไปใช้ <code>NotReady.vue</code></td>
+</tr>
+<tr>
+<td>แก้ไฟล์แล้วไม่เปลี่ยน</td>
+<td>Windows ไม่ส่งสัญญาณไฟล์เปลี่ยนเข้า Docker</td>
+<td>ตรวจ <code>usePolling: true</code> และ <code>nodemon -L</code> แล้ว restart</td>
+</tr>
+<tr>
+<td>401 ทุกครั้งทั้งที่ login แล้ว</td>
+<td>token หมดอายุ หรือเปลี่ยนรหัสแล้ว</td>
+<td>ออกจากระบบแล้ว login ใหม่</td>
+</tr>
+<tr>
+<td>403 "กรุณาเปลี่ยนรหัสผ่านครั้งแรก"</td>
+<td>บัญชียังไม่เปลี่ยนรหัส</td>
+<td>เปลี่ยนรหัสผ่านก่อน (ถูกต้องตามออกแบบ)</td>
+</tr>
+<tr>
+<td>403 "รอบยังไม่เปิด หรืออยู่นอกวันประเมิน"</td>
+<td>รอบยังเป็น draft หรือวันเริ่มเป็นวันหลัง</td>
+<td>admin เปิดรอบ / สร้างรอบที่เริ่มวันนี้</td>
+</tr>
+<tr>
+<td>ลืมรหัส admin ที่เปลี่ยนแล้ว</td>
+<td>—</td>
+<td><code>docker compose down -v</code> แล้ว up ใหม่ (ข้อมูลหายหมด)</td>
+</tr>
+<tr>
+<td><code>port is already allocated</code></td>
+<td>โปรแกรมอื่นใช้พอร์ต</td>
+<td>เปลี่ยนเลขซ้ายใน <code>ports</code> ของ compose</td>
+</tr>
+<tr>
+<td><code>npm install</code> ใน container ค้างนาน / <code>ETIMEDOUT</code></td>
+<td>ไม่มีอินเทอร์เน็ต</td>
+<td>ดูแผนสำรองด้านล่าง</td>
+</tr>
+</tbody>
+</table>
+</section><section class="part"><h2>แผนสำรอง: ไม่มีอินเทอร์เน็ตให้ <code>npm install</code> ใน Docker</h2>
+<p>ถามกรรมการวันแรกว่าเครื่องแข่งออกอินเทอร์เน็ตไปที่ npm ได้ไหม และ Docker image ที่เตรียมมีอะไรบ้าง</p>
+<ul>
+<li>ถ้ากรรมการมี image <code>node</code> และ <code>mysql</code> ให้แล้ว แต่ไม่มีเน็ต → ให้ติดตั้งไลบรารีจากเครื่องที่มีเน็ตในวันตรวจเครื่อง (<code>docker compose up</code> ครั้งแรกในวันแรก) volume ของ <code>node_modules</code> จะเก็บไว้ให้ ห้ามใช้ <code>docker compose down -v</code> หลังจากนั้น</li>
+<li>ถ้า Docker ใช้ได้แค่ MySQL → รัน MySQL ใน Docker แต่รัน backend/frontend ด้วย Node บนเครื่อง (ต้องเป็น Node 20.19 ขึ้นไป เพราะ Vite 7):</li>
+</ul>
+<div class="codebox"><pre><code class="language-powershell"># Terminal 1 — เปิดเฉพาะฐานข้อมูล
+docker compose up -d db phpmyadmin
+
+# Terminal 2 — backend บนเครื่อง
+cd C:\bpes\backend
+$env:DB_HOST="127.0.0.1"; $env:DB_PORT="3307"; $env:DB_PASSWORD="root1234"; $env:DB_NAME="bpes"
+$env:JWT_SECRET="bpes-2568-change-this-to-a-long-random-secret-key"
+npm install
+npm run seed
+npm run dev
+
+# Terminal 3 — frontend บนเครื่อง
+cd C:\bpes\frontend
+npm install
+npm run dev
+</code></pre></div>
+<p>เปิด http://localhost:5175 ได้เหมือนเดิม (vite ส่ง <code>/api</code> ไป <code>http://localhost:3301</code> เองเมื่อไม่มี <code>API_URL</code>)</p></section><div class="pager"></div></article>
+  </main>
+</div>
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var store={get:function(k){try{return localStorage.getItem('bpes:'+k)}catch(e){return null}},
+             set:function(k,v){try{localStorage.setItem('bpes:'+k,v)}catch(e){}}};
+  var pages=[].slice.call(document.querySelectorAll('.page'));
+  var links=[].slice.call(document.querySelectorAll('aside nav a'));
+
+  // กล่องโค้ด: ปุ่มคัดลอก และย่อ/ขยายโค้ดยาว
+  [].slice.call(document.querySelectorAll('.codebox')).forEach(function(box){
+    var pre=box.querySelector('pre');
+    var b=document.createElement('button'); b.className='copy'; b.type='button'; b.textContent='คัดลอก';
+    b.onclick=function(){
+      var txt=pre.innerText;
+      var done=function(){b.textContent='คัดลอกแล้ว ✓';b.classList.add('ok');setTimeout(function(){b.textContent='คัดลอก';b.classList.remove('ok')},1500)};
+      if(navigator.clipboard){navigator.clipboard.writeText(txt).then(done,function(){fallback(txt);done()})}else{fallback(txt);done()}
+    };
+    box.appendChild(b);
+    if(pre.innerText.split('\n').length>28){
+      var f=document.createElement('button'); f.className='fold'; f.type='button'; f.textContent='แสดงโค้ดทั้งหมด';
+      f.onclick=function(){pre.classList.toggle('tall');f.textContent=pre.classList.contains('tall')?'ย่อโค้ด':'แสดงโค้ดทั้งหมด'};
+      box.appendChild(f);
+    }
+  });
+  function fallback(t){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}a.remove()}
+
+  // จำช่องที่ติ๊กไว้
+  [].slice.call(document.querySelectorAll('input[data-key]')).forEach(function(c){
+    var k=c.getAttribute('data-key'); c.checked=store.get(k)==='1';
+    c.addEventListener('change',function(){store.set(k,c.checked?'1':'0')});
+  });
+
+  // ปุ่มก่อนหน้า / ถัดไป / ทำเสร็จแล้ว
+  pages.forEach(function(page,i){
+    var f=document.createElement('div'); f.className='finish';
+    var prev=i>0?'<a class="btn" href="#'+pages[i-1].id+'">← ก่อนหน้า</a>':'<span></span>';
+    var next=i<pages.length-1?'<a class="btn" href="#'+pages[i+1].id+'">ถัดไป →</a>':'<span></span>';
+    f.innerHTML=prev+'<button class="btn primary" data-done="'+page.id+'"></button>'+next;
+    page.appendChild(f);
+  });
+  function paintDone(){
+    var c=0;
+    links.forEach(function(a){var d=store.get('done:'+a.dataset.page)==='1';a.classList.toggle('is-done',d);if(d)c++});
+    [].slice.call(document.querySelectorAll('[data-done]')).forEach(function(b){var d=store.get('done:'+b.dataset.done)==='1';b.textContent=d?'ทำเสร็จแล้ว ✓ (กดเพื่อยกเลิก)':'ทีมทำขั้นนี้เสร็จแล้ว';b.classList.toggle('is-done',d)});
+    var p=Math.round(c/links.length*100);document.getElementById('pct').textContent=p;document.getElementById('barfill').style.width=p+'%';
+  }
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-done]');if(!b)return;var k='done:'+b.dataset.done;store.set(k,store.get(k)==='1'?'0':'1');paintDone()});
+  paintDone();
+
+  // จำว่าเลือกดูงานของใคร
+  var radios=[].slice.call(document.querySelectorAll('input.wr'));
+  var saved=store.get('who'); radios.forEach(function(r){if(r.id===saved)r.checked=true;r.addEventListener('change',function(){store.set('who',r.id)})});
+
+  // สลับหน้า
+  var side=document.getElementById('side');
+  document.getElementById('menu').onclick=function(){side.classList.toggle('open')};
+  function show(){
+    var id=(location.hash||'#p0').slice(1); if(!document.getElementById(id)||!/^p\d+$/.test(id))id='p0';
+    pages.forEach(function(p){p.classList.toggle('show',p.id===id)});
+    links.forEach(function(a){a.classList.toggle('active',a.dataset.page===id)});
+    side.classList.remove('open'); window.scrollTo(0,0);
+  }
+  function go(id){
+    if(!document.getElementById(id))return;
+    pages.forEach(function(p){p.classList.toggle('show',p.id===id)});
+    links.forEach(function(a){a.classList.toggle('active',a.dataset.page===id)});
+    side.classList.remove('open'); window.scrollTo(0,0);
+    try{history.replaceState(null,'','#'+id)}catch(e){}
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href^="#p"]'); if(!a)return;
+    e.preventDefault(); go(a.getAttribute('href').slice(1));
+  });
+  window.addEventListener('hashchange',show); show();
+})();
+</script>
+</body>
+</html>

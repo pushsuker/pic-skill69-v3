@@ -1,0 +1,232 @@
+[v-cloak] {
+  display: none;
+}
+body {
+  font-family: Tahoma, 'Leelawadee UI', sans-serif;
+  color: #243648;
+  background: #f2f5f8;
+}
+header {
+  padding: 18px 24px;
+  background: #164d72;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+header strong {
+  font-size: 22px;
+}
+header small {
+  display: block;
+}
+nav {
+  padding: 12px 24px;
+  background: white;
+  border-bottom: 1px solid #d5e0e8;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+main {
+  max-width: 1120px;
+  width: 100%;
+  margin: 24px auto;
+  padding: 0 20px 50px;
+}
+h1 {
+  font-size: 26px;
+  margin: 12px 0 20px;
+}
+h2 {
+  font-size: 21px;
+  margin: 20px 0 14px;
+}
+h3 {
+  font-size: 18px;
+  margin: 8px 0;
+}
+p {
+  margin: 10px 0;
+  line-height: 1.8;
+}
+.v-input {
+  margin: 12px 0;
+}
+.box {
+  background: white;
+  padding: 22px;
+  border: 1px solid #d2dfe8;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.login {
+  max-width: 460px;
+  margin: 35px auto;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 20px;
+}
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.table-wrap {
+  overflow: auto;
+  margin: 18px 0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  font-size: 15px;
+}
+th,
+td {
+  border: 1px solid #d2dfe8;
+  padding: 12px;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  background: #e8f1f7;
+  white-space: nowrap;
+}
+td {
+  overflow-wrap: anywhere;
+}
+.muted {
+  color: #526a7c;
+}
+.progress {
+  font-weight: bold;
+  color: #145743;
+}
+.signature {
+  display: block;
+  max-width: 200px;
+  max-height: 90px;
+  margin: 12px 0;
+}
+.big-number {
+  font-size: 30px;
+  font-weight: bold;
+  color: #164d72;
+}
+a {
+  color: #155c8d;
+  overflow-wrap: anywhere;
+}
+.v-btn {
+  text-transform: none;
+  letter-spacing: 0;
+}
+.v-alert {
+  margin-bottom: 16px;
+}
+.v-btn__content {
+  white-space: normal;
+}
+hr {
+  border: 0;
+  border-top: 1px solid #d2dfe8;
+  margin: 24px 0;
+}
+@media (max-width: 650px) {
+  main {
+    padding: 0 12px;
+    margin-top: 14px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .box {
+    padding: 16px;
+  }
+  header {
+    padding: 16px;
+  }
+  header strong {
+    font-size: 19px;
+  }
+  nav {
+    padding: 10px;
+  }
+  h1 {
+    font-size: 23px;
+  }
+  th,
+  td {
+    padding: 9px;
+    min-width: 92px;
+  }
+}
+@media print {
+  @page {
+    size: A4;
+    margin: 15mm;
+  }
+  header,
+  nav,
+  .no-print,
+  .v-alert {
+    display: none !important;
+  }
+  main {
+    margin: 0;
+    max-width: none;
+    padding: 0;
+  }
+  .box {
+    border: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+  body {
+    background: white;
+    color: black;
+    font-size: 11pt;
+  }
+  .table-wrap {
+    overflow: visible;
+  }
+  table {
+    table-layout: fixed;
+    font-size: 10pt;
+  }
+  thead {
+    display: table-header-group;
+  }
+  th,
+  td {
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  tr,
+  .committee {
+    break-inside: avoid;
+  }
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+  .signature {
+    max-height: 65px;
+  }
+}
+
+@media print {
+  .v-table__wrapper {
+    overflow: visible !important;
+    height: auto !important;
+  }
+}
